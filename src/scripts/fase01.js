@@ -203,7 +203,7 @@ function movement(direcao) {
                     for(let j = 0; j < 17; j ++) {
                         if (fase01[i][j] === player) {
                             fase01[i][j] = ' ';
-                            fase[i + 1][j] = player;
+                            fase[i][j + 1] = player;
                         }
                     }
                 }
