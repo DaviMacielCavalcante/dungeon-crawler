@@ -21,7 +21,9 @@ for (let i = 0; i < 17; i++)
                 if (j === 0) {
                     fase01[i][j] = '*'
                 } else if (j === 2) {
-                    fase01[i][j] = ' '
+                    fase01[i][j] = '&'
+                } else if (j === 16) {
+                    fase01[i][j] = 'D'
                 } else {
                     fase01[i][j] = ' '
                 }
@@ -107,7 +109,7 @@ for (let i = 0; i < 17; i++)
                 if (j === 0 || j === 4 || j === 7 || j === 10 || j === 16) {
                     fase01[i][j] = '*'
                 } else if (j === 2) {
-                    fase01[i][j] = 'o'
+                    fase01[i][j] = '@'
                 } else {
                     fase01[i][j] = ' '
                 }
