@@ -100,14 +100,14 @@ for (let i = 0; i < 17; i++) {
                 } else {
                     fase01[i][j] = '*'
                 }
-            break;
+                break;
             case 13:
                 if (j === 0 || j === 4 || j === 10 || j === 16) {
                     fase01[i][j] = '*'
                 } else {
                     fase01[i][j] = ' '
                 }
-            break;
+                break;
             case 14:
                 if (j === 0 || j === 4 || j === 7 || j === 10 || j === 16) {
                     fase01[i][j] = '*'
@@ -116,16 +116,16 @@ for (let i = 0; i < 17; i++) {
                 } else {
                     fase01[i][j] = ' '
                 }
-            break;
+             break;
             case 15:
                 if (j === 0 || j === 7 || j === 16) {
                     fase01[i][j] = '*'
                 } else {
                     fase01[i][j] = ' '
                 }
-            break;
+                break;
             default: fase01[i][j] = "*"
-            break;
+                break;
         }
     }
 };    
@@ -142,29 +142,29 @@ document.addEventListener ('keydown', (event) => {
                 console.log(fase01);
             } 
             break;
-            case 83: // S
-                if (fase01[coordPlayer.y + 1][coordPlayer.x] === ' ') {
-                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y + 1][coordPlayer.x] = '&';
-                    coordPlayer.y++;
-                    console.log(fase01);
-                }
-                break;
-            case 65: // A
-                if (fase01[coordPlayer.y][coordPlayer.x - 1] === ' ') {
-                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y][coordPlayer.x - 1] = '&';
-                    coordPlayer.x--;
-                    console.log(fase01);
-                }
+        case 83: // S
+            if (fase01[coordPlayer.y + 1][coordPlayer.x] === ' ') {
+                fase01[coordPlayer.y][coordPlayer.x] = ' ';
+                fase01[coordPlayer.y + 1][coordPlayer.x] = '&';
+                coordPlayer.y++;
+                console.log(fase01);
+            }
             break;
-            case 68: // D
-                if(fase01[coordPlayer.y][coordPlayer.x + 1] === ' ') {
-                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y][coordPlayer.x + 1] = '&';
-                    coordPlayer.x++;
-                    console.log(fase01);
-                }
+        case 65: // A
+            if (fase01[coordPlayer.y][coordPlayer.x - 1] === ' ') {
+                fase01[coordPlayer.y][coordPlayer.x] = ' ';
+                fase01[coordPlayer.y][coordPlayer.x - 1] = '&';
+                coordPlayer.x--;
+                console.log(fase01);
+            }
+            break;
+        case 68: // D
+            if(fase01[coordPlayer.y][coordPlayer.x + 1] === ' ') {
+                fase01[coordPlayer.y][coordPlayer.x] = ' ';
+                fase01[coordPlayer.y][coordPlayer.x + 1] = '&';
+                coordPlayer.x++;
+                console.log(fase01);
+            }
             break;
     };
 });
