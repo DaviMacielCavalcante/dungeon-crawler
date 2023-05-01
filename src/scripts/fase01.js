@@ -1,10 +1,12 @@
 let fase01 = [];
-
-const player = '&';
 let coordPlayer = {
     x: 2,
     y: 2,
-} ;
+};
+let coordKey = {
+    x: 0,
+    y: 0
+}
 
 for (let i = 0; i < 17; i++) {
     fase01[i] = new Array(17);
@@ -24,7 +26,7 @@ for (let i = 0; i < 17; i++) {
                 if (j === 0) {
                     fase01[i][j] = '*';
                 } else if (j === 2) {
-                    fase01[i][j] = player;
+                    fase01[i][j] = "&";
                 } else if (j === 16) {
                     fase01[i][j] = 'D';
                 } else {
@@ -131,11 +133,10 @@ for (let i = 0; i < 17; i++) {
 };    
 console.log(fase01);
 
-
-document.addEventListener ('keydown', (event) => {
-    switch (event.keyCode) {
-        case 87: // W
-            if (fase01[coordPlayer.y - 1][coordPlayer.x] === ' ') {
+document.addEventListener ('keydown', (controles) => {
+    switch (controles.keyCode) {
+            case 87: // W
+                if (fase01[coordPlayer.y - 1][coordPlayer.x] === ' ' || fase01[coordPlayer.y - 1][coordPlayer.x] === '@' || fase01[coordPlayer.y - 1][coordPlayer.x] === '=') {
                 fase01[coordPlayer.y][coordPlayer.x] = ' ';
                 fase01[coordPlayer.y - 1][coordPlayer.x] = '&';
                 coordPlayer.y--;
