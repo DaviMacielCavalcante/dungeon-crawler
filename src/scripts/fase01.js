@@ -1,11 +1,16 @@
 let fase01 = [];
+const player = '&', lockedDoor = 'D', unlockedDoor = '=', key = '@';
 let coordPlayer = {
     x: 2,
     y: 2,
 };
 let coordKey = {
-    x: ,
-    y:
+    x: 2,
+    y: 14,
+}
+let coordDoor = {
+    x: 17,
+    y: 2,
 }
 
 for (let i = 0; i < 17; i++) {
@@ -26,9 +31,9 @@ for (let i = 0; i < 17; i++) {
                 if (j === 0) {
                     fase01[i][j] = '*';
                 } else if (j === 2) {
-                    fase01[i][j] = "&";
+                    fase01[i][j] = player;
                 } else if (j === 16) {
-                    fase01[i][j] = 'D';
+                    fase01[i][j] = lockedDoor;
                 } else {
                     fase01[i][j] = ' ';
                 }
@@ -114,7 +119,7 @@ for (let i = 0; i < 17; i++) {
                 if (j === 0 || j === 4 || j === 7 || j === 10 || j === 16) {
                     fase01[i][j] = '*'
                 } else if (j === 2) {
-                    fase01[i][j] = '@'
+                    fase01[i][j] = key
                 } else {
                     fase01[i][j] = ' '
                 }
@@ -136,38 +141,85 @@ console.log(fase01);
 document.addEventListener ('keydown', (controles) => {
     switch (controles.keyCode) {
             case 87: // W
-                if (fase01[coordPlayer.y - 1][coordPlayer.x] === ' ' || fase01[coordPlayer.y - 1][coordPlayer.x] === '@' || fase01[coordPlayer.y - 1][coordPlayer.x] === '=') {
-                fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                fase01[coordPlayer.y - 1][coordPlayer.x] = '&';
-                coordPlayer.y--;
-                console.log(fase01);
-                } 
+                if (fase01[coordPlayer.y - 1][coordPlayer.x] === ' ' || fase01[coordPlayer.y - 1][coordPlayer.x] === key || fase01[coordPlayer.y - 1][coordPlayer.x] === unlockedDoor) {
+
+                    if (coordPlayer === coordKey && fase01[coordDoor][coordDoor] === lockedDoor) {
+                        fase01[coordPlayer.y][coordPlayer.x] = key;
+                        fase01[coordPlayer.y - 1][coordPlayer.x] = player;
+                        coordPlayer.y--;
+                        console.log(fase01);
+
+                    } else {
+                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
+                    fase01[coordPlayer.y - 1][coordPlayer.x] = player;
+                    coordPlayer.y--;
+                    console.log(fase01);
+
+                    }
+                }
                 break;
             case 83: // S
-                if (fase01[coordPlayer.y + 1][coordPlayer.x] === ' ' || fase01[coordPlayer.y + 1][coordPlayer.x] === '@' || fase01[coordPlayer.y + 1][coordPlayer.x] === '=') {
+                if (fase01[coordPlayer.y + 1][coordPlayer.x] === ' ' || fase01[coordPlayer.y + 1][coordPlayer.x] === key || fase01[coordPlayer.y + 1][coordPlayer.x] === unlockedDoor) {
+
+                    if (coordPlayer === coordKey && fase01[coordDoor][coordDoor] === lockedDoor) {
+                        fase01[coordPlayer.y][coordPlayer.x] = key;
+                        fase01[coordPlayer.y + 1][coordPlayer.x] = player;
+                        coordPlayer.y++;
+                        console.log(fase01);
+
+                    } else {
                     fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y + 1][coordPlayer.x] = '&';
+                    fase01[coordPlayer.y + 1][coordPlayer.x] = player;
                     coordPlayer.y++;
                     console.log(fase01);
+
+                    }
                 }
                 break;
             case 65: // A
-                if (fase01[coordPlayer.y][coordPlayer.x - 1] === ' ' || fase01[coordPlayer.y][coordPlayer.x - 1] === '@' || fase01[coordPlayer.y][coordPlayer.x - 1] === '=') {
+                if (fase01[coordPlayer.y][coordPlayer.x - 1] === ' ' || fase01[coordPlayer.y][coordPlayer.x - 1] === key || fase01[coordPlayer.y][coordPlayer.x - 1] === unlockedDoor) {
+
+                    if (coordPlayer === coordKey && fase01[coordDoor][coordDoor] === lockedDoor) {
+                        fase01[coordPlayer.y][coordPlayer.x] = key;
+                        fase01[coordPlayer.y][coordPlayer.x - 1] = player;
+                        coordPlayer.x--;
+                        console.log(fase01);
+
+                    } else {
                     fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y][coordPlayer.x - 1] = '&';
+                    fase01[coordPlayer.y][coordPlayer.x - 1] = player;
                     coordPlayer.x--;
                     console.log(fase01);
+
+                    }
                 }
                 break;
             case 68: // D
-                if (fase01[coordPlayer.y][coordPlayer.x + 1] === ' ' || fase01[coordPlayer.y][coordPlayer.x + 1] === '@' || fase01[coordPlayer.y][coordPlayer.x + 1] === '=') {
+                if (fase01[coordPlayer.y][coordPlayer.x + 1] === ' ' || fase01[coordPlayer.y][coordPlayer.x + 1] === key || fase01[coordPlayer.y][coordPlayer.x + 1] === unlockedDoor) {
+
+                    if (coordPlayer === coordKey && fase01[coordDoor][coordDoor] === lockedDoor) {
+                        fase01[coordPlayer.y][coordPlayer.x] = key;
+                        fase01[coordPlayer.y][coordPlayer.x + 1] = player;
+                        coordPlayer.x++;
+                        console.log(fase01);
+
+                    } else {
                     fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y][coordPlayer.x + 1] = '&';
+                    fase01[coordPlayer.y][coordPlayer.x + 1] = player;
                     coordPlayer.x++;
                     console.log(fase01);
+
+                    }
                 }
                 break;
-            case 105: // I
+            case 73: // I
+                if (coordPlayer === coordKey) {
+                    fase01[coordDoor][coordDoor] = unlockedDoor;
+                    console.log(fase01)
+                }
+                if (coordPlayer === coordDoor) {
+                    // Passa para a próxima fase
+                }
                 
     };
 });
