@@ -1,266 +1,119 @@
 let fase01 = [];
 const player = '&', lockedDoor = 'D', unlockedDoor = '=', key = '@';
 let coordPlayer = {
-    x: 2,
-    y: 15,
+    x: 1,
+    y: 1,
 };
 let coordKey = {
     x: 2,
-    y: 14,
+    y: 12,
 }
 let coordDoor = {
-    x: 16,
-    y: 2,
+    x: 14,
+    y: 1,
 }
 
-// function gerarMapa() {
-//     for (let i = 0; i < 17; i++) {
-//         fase01[i] = new Array(17);
-//     };
-//     for (let i = 0; i < 17; i++) {
-//         for(let j = 0; j < 17; j++) {
-//             switch (i) {
-//                 case 1:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 2:
-//                     if (j === 0) {
-//                         fase01[i][j] = '*';
-//                     } else if (j === 2) {
-//                         fase01[i][j] = ' ';
-//                     } else if (j === 16) {
-//                         fase01[i][j] = lockedDoor;
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 3:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 4:
-//                     if (j >= 11 && j <= 15) {
-//                         fase01[i][j] = ' ';
-//                     } else {
-//                         fase01[i][j] = '*';
-//                     }
-//                     break;
-//                 case 5:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 6:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 7:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 8:
-//                     if (j >= 1 && j <= 5) {
-//                         fase01[i][j] = ' ';
-//                     } else {
-//                         fase01[i][j] = '*';
-//                     }
-//                     break;
-//                 case 9:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 10:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 11:
-//                     if (j === 0 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 12:
-//                     if (j >= 11 && j <= 15) {
-//                         fase01[i][j] = ' ';
-//                     } else {
-//                         fase01[i][j] = '*';
-//                     }
-//                     break;
-//                 case 13:
-//                     if (j === 0 || j === 4 || j === 10 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 14:
-//                     if (j === 0 || j === 4 || j === 7 || j === 10 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else if (j === 2) {
-//                         fase01[i][j] = key;
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 case 15:
-//                     if (j === 0 || j === 7 || j === 16) {
-//                         fase01[i][j] = '*';
-//                     } else if(j === 2) {
-//                         fase01[i][j] = player;
-//                     } else {
-//                         fase01[i][j] = ' ';
-//                     }
-//                     break;
-//                 default:  
-//                     fase01[i][j] = "*";
-//                     break;
-//             }
-//         };        
-//     }; 
-// };  
-
-// function atualizarMapa() {
-//     console.log(fase01);
-// };
-
-for (let i = 0; i < 17; i++) {
-    fase01[i] = new Array(17);
+for (let i = 0; i < 15; i++) {
+    fase01[i] = new Array(15);
 };
     
-for (let i = 0; i < 17; i++) {
-    for(let j = 0; j < 17; j++) {
+for (let i = 0; i < 15; i++) {
+    for(let j = 0; j < 15; j++) {
         switch (i) {
             case 1:
-                if (j === 0 || j === 16) {
-                    fase01[i][j] = '*';
-                } else {
-                    fase01[i][j] = ' ';
-                }
-            break;
-            case 2:
                 if (j === 0) {
                     fase01[i][j] = '*';
-                } else if (j === 2) {
-                    fase01[i][j] = ' ';
-                } else if (j === 16) {
+                } else if (j === 1) {
+                    fase01[i][j] = player;
+                } else if (j === 14) {
                     fase01[i][j] = lockedDoor;
                 } else {
                     fase01[i][j] = ' ';
                 }
                 break;
-            case 3:
-                if (j === 0 || j === 16) {
+            case 2:
+                if (j === 0 || j === 14) {
                     fase01[i][j] = '*';
                 } else {
                     fase01[i][j] = ' ';
                 }
                 break;
-            case 4:
-                if (j >= 11 && j <= 15) {
+            case 3:
+                if (j >= 11 && j <= 13) {
                     fase01[i][j] = ' ';
                 } else {
                     fase01[i][j] = '*';
                 }
+                break;
+            case 4:
+                if (j === 0 || j === 14) {
+                    fase01[i][j] = '*';
+                } else {
+                    fase01[i][j] = ' ';
+                }
             break;
             case 5:
-                if (j === 0 || j === 16) {
+                if (j === 0 || j === 14) {
                     fase01[i][j] = '*';
                 } else {
                     fase01[i][j] = ' ';
                 }
                 break;
             case 6:
-                if (j === 0 || j === 16) {
-                    fase01[i][j] = '*';
+                if (j >= 1 && j <= 3) {
+                    fase01[i][j] = ' '
                 } else {
-                    fase01[i][j] = ' ';
+                    fase01[i][j] = '*'
                 }
                 break;
             case 7:
-                if (j === 0 || j === 16) {
+                if (j === 0 || j === 14) {
                     fase01[i][j] = '*'
                 } else {
                     fase01[i][j] = ' '
                 }
                 break;
             case 8:
-                if (j >= 1 && j <= 5) {
-                    fase01[i][j] = ' '
+                if (j === 0 || j === 14) {
+                    fase01[i][j] = '*';
                 } else {
-                    fase01[i][j] = '*'
+                    fase01[i][j] = ' ';
                 }
                 break;
+                break;
             case 9:
-                if (j === 0 || j === 16) {
-                    fase01[i][j] = '*'
+                if (j >= 11 && j <= 13) {
+                    fase01[i][j] = ' ';
                 } else {
-                    fase01[i][j] = ' '
+                    fase01[i][j] = '*';
                 }
                 break;
             case 10:
-                if (j === 0 || j === 16) {
+                if (j === 0 || j === 4 || j === 8 || j === 14) {
                     fase01[i][j] = '*'
                 } else {
                     fase01[i][j] = ' '
                 }
                 break;
             case 11:
-                if (j === 0 || j === 16) {
+                if (j === 0 || j === 4 || j === 6 || j === 8 || j === 10 || j === 14) {
                     fase01[i][j] = '*'
                 } else {
                     fase01[i][j] = ' '
                 }
                 break;
             case 12:
-                if (j >= 11 && j <= 15) {
-                    fase01[i][j] = ' '
-                } else {
+                if (j === 0 || j === 4 || j === 6 || j === 8 || j === 10 || j === 14) {
                     fase01[i][j] = '*'
+                } else if (j === 2) {
+                    fase01[i][j] = key;
+                } else {
+                    fase01[i][j] = ' '
                 }
                 break;
             case 13:
-                if (j === 0 || j === 4 || j === 10 || j === 16) {
+                if (j === 0 || j === 6 || j === 10 || j === 14) {
                     fase01[i][j] = '*'
-                } else {
-                    fase01[i][j] = ' '
-                }
-                break;
-            case 14:
-                if (j === 0 || j === 4 || j === 7 || j === 10 || j === 16) {
-                    fase01[i][j] = '*'
-                } else if (j === 2) {
-                    fase01[i][j] = key
-                } else {
-                    fase01[i][j] = ' '
-                }
-             break;
-            case 15:
-                if (j === 0 || j === 7 || j === 16) {
-                    fase01[i][j] = '*'
-                } else if(j === 2) {
-                    fase01[i][j] = player
                 } else {
                     fase01[i][j] = ' '
                 }
