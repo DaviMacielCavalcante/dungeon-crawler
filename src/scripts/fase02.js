@@ -1,6 +1,6 @@
 let fase02 = [];
 let redDoor, purpleDoor, pinkDoor, fakeWall;
-const player = '&', spikes = '#', key = '@';
+const player = '&', spikes = '#', key = '@', lockedDoor = 'D', unlockedDoor = '=';
 const redKey = key, purpleKey = key, pinkKey = key;
 const  greenButton = 'O', darkBlueButton = 'O', lightBlueButton = 'O', yellowButton = 'O', orangeButton = 'O';
 let coordPlayer = {x: 2, y: 2,};
@@ -100,7 +100,7 @@ for (let i = 0; i < 30; i++) {
                 if (j === 0 || j === 4 || j >= 12 && j <= 14 || j >= 16 && j <= 18 || j === 22 || j === 26 || j === 29) {
                     fase02[i][j] = '*';
                 } else if (j === 15) {
-                    purpleDoor = 'D';
+                    purpleDoor = lockedDoor;
                     fase02[i][j] = purpleDoor;
                 } else if (j === fixedCoords.pinkKey.x) {
                     fase02[i][j] = pinkKey;
@@ -132,7 +132,7 @@ for (let i = 0; i < 30; i++) {
                 } else if (j === fixedCoords.lightBlueButton.x) {
                     fase02[i][j] = lightBlueButton;
                 } else if (j === fixedCoords.finalDoor.x) {
-                    pinkDoor = 'D';
+                    pinkDoor = lockedDoor;
                     fase02[i][j] = pinkDoor;
                 } else {
                     fase02[i][j] = ' ';
@@ -149,7 +149,7 @@ for (let i = 0; i < 30; i++) {
                 if (j >= 0 && j <= 8 || j >= 10 && j <= 18 || j === 22 || j >= 26 && j <= 29) {
                     fase02[i][j] = '*';
                 } else if (j === 9) {
-                    redDoor = 'D';
+                    redDoor = lockedDoor;
                     fase02[i][j] = redDoor;
                 } else {
                     fase02[i][j] = ' ';
@@ -251,7 +251,7 @@ for (let i = 0; i < 30; i++) {
         }
     } 
 };    
-console.log(fase02);
+console.table(fase02);
 
 function checarEspacoVazio(direcao) {
     switch (direcao) {
@@ -290,10 +290,6 @@ function checarPorta(direcao) {
         case 68:
             return fase02[coordPlayer.y][coordPlayer.x + 1] === unlockedDoor;
     }
-};
-
-function estaNaChaveEPortaTrancada() {
-    return coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase02[coordDoor.y][coordDoor.x] === lockedDoor;
 };
 
 function estaNaChaveVermelha() {
@@ -337,10 +333,25 @@ document.addEventListener ('keydown', (controles) => {
             case 87: // W
                 if (checarEspacoVazio(87) || checarEspacoChave(87) || checarPorta(87)) {
 
-                    if (coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase02[coordDoor.y][coordDoor.x] === lockedDoor) {
-                        fase02[coordPlayer.y][coordPlayer.x] = key;
+                    if (estaNaChaveVermelha() && redDoor === lockedDoor) {
+                        fase02[coordPlayer.y][coordPlayer.x] = redKey;
                         fase02[coordPlayer.y - 1][coordPlayer.x] = player;
                         coordPlayer.y--;
+                        console.clear();
+                        console.log(fase02);
+
+                    } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
+                        fase02[coordPlayer.y][coordPlayer.x] = purpleKey;
+                        fase02[coordPlayer.y - 1][coordPlayer.x] = player;
+                        coordPlayer.y--;
+                        console.clear();
+                        console.log(fase02);
+
+                    } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
+                        fase02[coordPlayer.y][coordPlayer.x] = pinkKey;
+                        fase02[coordPlayer.y - 1][coordPlayer.x] = player;
+                        coordPlayer.y--;
+                        console.clear();
                         console.log(fase02);
 
                     } else {
@@ -348,6 +359,7 @@ document.addEventListener ('keydown', (controles) => {
                         fase02[coordPlayer.y - 1][coordPlayer.x] = player;
                         coordPlayer.y--;
                         console.log(coordPlayer.y)
+                        console.clear();
                         console.log(fase02);
 
                     }
@@ -356,7 +368,7 @@ document.addEventListener ('keydown', (controles) => {
             case 83: // S
                 if (checarEspacoVazio(83)|| checarEspacoChave(83) || checarPorta(83)) {
 
-                    if (coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase02[coordDoor.y][coordDoor.x] === lockedDoor) {
+                    if (estaNaChaveVermelha() && redDoor === lockedDoor) {
                         fase02[coordPlayer.y][coordPlayer.x] = key;
                         fase02[coordPlayer.y + 1][coordPlayer.x] = player;
                         coordPlayer.y++;
@@ -410,15 +422,15 @@ document.addEventListener ('keydown', (controles) => {
             case 73: // I
                 if (estaNaChaveRosa() || estaNaChaveRoxa() || estaNaChaveVermelha()) {
                     if(estaNaChaveVermelha()) {
-                        redDoor = '='
+                        redDoor = unlockedDoor;
                         fase02[fixedCoords.redDoor.y][fixedCoords.redDoor.x] = redDoor;
                     }
                     if(estaNaChaveRosa()) {
-                        pinkDoor = '='
+                        pinkDoor = unlockedDoor;
                         fase02[fixedCoords.pinkDoor.y][fixedCoords.pinkDoor.x] = pinkDoor;
                     }
                     if(estaNaChaveRoxa()) {
-                        purpleDoor = '='
+                        purpleDoor = unlockedDoor;
                         fase02[fixedCoords.pinkDoor.y][fixedCoords.pinkDoor.x] = purpleDoor;
                     }                    
                     console.log(fase02)
