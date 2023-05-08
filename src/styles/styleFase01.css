@@ -1,7 +1,13 @@
 body {
     font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
 }
-
-td {
-    padding: 0px;
+ td {
+    min-width: 40px;
+    min-height: 40px;
+    text-align: center;
 }

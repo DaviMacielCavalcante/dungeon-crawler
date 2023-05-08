@@ -174,78 +174,101 @@ function acimaDaPortaDestrancada() {
     return coordPlayer.x === coordDoor.x && coordPlayer.y === coordDoor.y;
 };
 
+function manterChaveIrParaCima() {
+    fase01[coordPlayer.y][coordPlayer.x] = key;
+    fase01[coordPlayer.y - 1][coordPlayer.x] = player;
+    coordPlayer.y--;
+    console.log(fase01);       
+};
+
+function irParaCima() {
+    fase01[coordPlayer.y][coordPlayer.x] = ' ';
+    fase01[coordPlayer.y - 1][coordPlayer.x] = player;
+    coordPlayer.y--;
+    console.log(coordPlayer.y)
+    console.log(fase01);
+};
+
+function manterChaveIrParaBaixo() {
+    fase01[coordPlayer.y][coordPlayer.x] = key;
+    fase01[coordPlayer.y + 1][coordPlayer.x] = player;
+    coordPlayer.y++;
+    console.log(fase01);
+};
+
+function irParaBaixo() {
+    fase01[coordPlayer.y][coordPlayer.x] = ' ';
+    fase01[coordPlayer.y + 1][coordPlayer.x] = player;
+    coordPlayer.y++;
+    console.log(fase01);
+};
+
+function manterChaveIrParaEsquerda() {
+    fase01[coordPlayer.y][coordPlayer.x] = key;
+    fase01[coordPlayer.y][coordPlayer.x - 1] = player;
+    coordPlayer.x--;
+    console.log(fase01);
+};
+
+function irParaEsquerda() {
+    fase01[coordPlayer.y][coordPlayer.x] = ' ';
+    fase01[coordPlayer.y][coordPlayer.x - 1] = player;
+    coordPlayer.x--;
+    console.log(fase01);
+}
+
+function manterChaveIrParaDireita() {
+    fase01[coordPlayer.y][coordPlayer.x] = key;
+    fase01[coordPlayer.y][coordPlayer.x + 1] = player;
+    coordPlayer.x++;
+    console.log(fase01);
+}
+
+function irParaDireita() {
+    fase01[coordPlayer.y][coordPlayer.x] = ' ';
+    fase01[coordPlayer.y][coordPlayer.x + 1] = player;
+    coordPlayer.x++;
+    console.log(fase01);
+}
+
 document.addEventListener ('keydown', (controles) => {
     switch (controles.keyCode) {
             case 87: // W
                 if (checarEspacoVazio(87) || checarEspacoChave(87) || checarPorta(87)) {
-
-                    if (coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase01[coordDoor.y][coordDoor.x] === lockedDoor) {
-                        fase01[coordPlayer.y][coordPlayer.x] = key;
-                        fase01[coordPlayer.y - 1][coordPlayer.x] = player;
-                        coordPlayer.y--;
-                        console.log(fase01);
-
+                    if (estaNaChaveEPortaTrancada()) {
+                        manterChaveIrParaCima();
                     } else {
-                        fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                        fase01[coordPlayer.y - 1][coordPlayer.x] = player;
-                        coordPlayer.y--;
-                        console.log(coordPlayer.y)
-                        console.log(fase01);
-
+                        irParaCima();
                     }
                 }
                 break;
             case 83: // S
                 if (checarEspacoVazio(83)|| checarEspacoChave(83) || checarPorta(83)) {
 
-                    if (coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase01[coordDoor.y][coordDoor.x] === lockedDoor) {
-                        fase01[coordPlayer.y][coordPlayer.x] = key;
-                        fase01[coordPlayer.y + 1][coordPlayer.x] = player;
-                        coordPlayer.y++;
-                        console.log(fase01);
-
+                    if (estaNaChaveEPortaTrancada()) {
+                        manterChaveIrParaBaixo();
                     } else {
-                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y + 1][coordPlayer.x] = player;
-                    coordPlayer.y++;
-                    console.log(fase01);
-
+                        irParaBaixo();
                     }
                 }
                 break;
             case 65: // A
                 if (checarEspacoVazio(65) || checarEspacoChave(65) || checarPorta(65)) {
 
-                    if (coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase01[coordDoor.y][coordDoor.x] === lockedDoor) {
-                        fase01[coordPlayer.y][coordPlayer.x] = key;
-                        fase01[coordPlayer.y][coordPlayer.x - 1] = player;
-                        coordPlayer.x--;
-                        console.log(fase01);
-
+                    if (estaNaChaveEPortaTrancada()) {
+                        manterChaveIrParaEsquerda();
                     } else {
-                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y][coordPlayer.x - 1] = player;
-                    coordPlayer.x--;
-                    console.log(fase01);
-
+                        irParaEsquerda()
                     }
                 }
                 break;
             case 68: // D
                 if (checarEspacoVazio(68) || checarEspacoChave(68) || checarPorta(68)) {
 
-                    if (coordPlayer.x === coordKey.x && coordPlayer.y === coordKey.y && fase01[coordDoor.y][coordDoor.x] === lockedDoor) {
-                        fase01[coordPlayer.y][coordPlayer.x] = key;
-                        fase01[coordPlayer.y][coordPlayer.x + 1] = player;
-                        coordPlayer.x++;
-                        console.log(fase01);
-
+                    if (estaNaChaveEPortaTrancada()) {
+                        manterChaveIrParaDireita();
                     } else {
-                    fase01[coordPlayer.y][coordPlayer.x] = ' ';
-                    fase01[coordPlayer.y][coordPlayer.x + 1] = player;
-                    coordPlayer.x++;
-                    console.log(fase01);
-
+                        irParaDireita()
                     }
                 }
                 break;

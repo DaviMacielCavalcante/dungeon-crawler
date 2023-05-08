@@ -22,7 +22,7 @@ function mapa() {
         for(let j = 0; j < 15; j++) {
             switch (i) {
                 case 1:
-                    if (coordPlayer.x === i && coordPlayer.y === j) {                        
+                    if (coordPlayer.x === j) {                        
                         fase01[i][j] = player;
                     }
                     if (j === 0) {
