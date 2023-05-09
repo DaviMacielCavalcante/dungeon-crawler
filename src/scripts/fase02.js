@@ -1,9 +1,9 @@
-let fase02 = [];
+let fase02 = [], fase02Início1morte = [], fase02Início2morte = [], vidas = 3;
 let redDoor, purpleDoor, pinkDoor;
 const player = '&', spikes = '#', key = '@', lockedDoor = 'D', unlockedDoor = '=', button = 'O';
 const redKey = key, purpleKey = key, pinkKey = key;
 const  greenButton = button, darkBlueButton = button, lightBlueButton = button, yellowButton = button, orangeButton = button;
-let coordPlayer = {x: 15, y: 13,};
+let coordPlayer = {x: 2, y: 2,};
 const fixedCoords = {
     redDoor: {x: 9, y: 16},
     purpleDoor: {x: 15, y: 11},
@@ -19,6 +19,8 @@ const fixedCoords = {
 };
 for (let i = 0; i < 30; i++) {
     fase02[i] = new Array(30);
+    fase02Início1morte[i] = new Array(30);
+    fase02Início2morte[i] = new Array(30);
 };
     
 for (let i = 0; i < 30; i++) {
@@ -36,6 +38,8 @@ for (let i = 0; i < 30; i++) {
             case 2:
                 if (j === 0 || j === 12 || j === 22 || j === 26 || j === 29) {
                     fase02[i][j] = '*';
+                } else if (j === coordPlayer.x) {
+                    fase02[i][j] = player;
                 } else {
                     fase02[i][j] = ' ';
                 }
@@ -233,8 +237,6 @@ for (let i = 0; i < 30; i++) {
                     fase02[i][j] = '*';
                 } else if (j === fixedCoords.purpleKey.x) {
                     fase02[i][j] =  purpleKey;
-                } else if (j === coordPlayer.x) {
-                    fase02[i][j] = player;
                 } else {
                     fase02[i][j] = ' ';
                 }
@@ -251,8 +253,15 @@ for (let i = 0; i < 30; i++) {
                 break;
         }
     } 
-};    
-console.table(fase02);
+};
+for (let i = 0; i < 30; i++) {
+    for(let j = 0; j < 30; j++) {
+        fase02Início1morte[i][j] = fase02[i][j];
+        fase02Início2morte[i][j] = fase02[i][j];
+    }
+};
+
+console.log(fase02);
 
 function checarEspacoVazio(direcao) {
     switch (direcao) {
@@ -266,6 +275,40 @@ function checarEspacoVazio(direcao) {
             return fase02[coordPlayer.y][coordPlayer.x + 1] === ' ';
     }
 };
+
+function checarEspinho(direcao) {
+    switch (direcao) {
+        case 87:
+            return fase02[coordPlayer.y - 1][coordPlayer.x] === spikes;
+        case 83:
+            return fase02[coordPlayer.y + 1][coordPlayer.x] === spikes;
+        case 65:
+            return fase02[coordPlayer.y][coordPlayer.x - 1] === spikes;
+        case 68:
+            return fase02[coordPlayer.y][coordPlayer.x + 1] === spikes;
+    }
+}
+
+function morteEGameOver () {
+    vidas--;
+    if (vidas === 0) {
+        alert('FIM DE JOGO');
+    } else if (vidas === 2) {
+        fase02[coordPlayer.y][coordPlayer.x] = ' ';
+        coordPlayer.x = 2;
+        coordPlayer.y = 2;
+        fase02 = fase02Início1morte;
+        console.clear();
+        console.log(fase02);  
+    } else if(vidas === 1) {
+        fase02[coordPlayer.y][coordPlayer.x] = ' ';
+        coordPlayer.x = 2;
+        coordPlayer.y = 2;
+        fase02 = fase02Início2morte;
+        console.clear();
+        console.log(fase02);  
+    }
+}
 
 function checarEspacoChave(direcao) {
     switch (direcao) {
@@ -355,7 +398,7 @@ function manterChaveIrParaCima() {
     fase02[coordPlayer.y - 1][coordPlayer.x] = player;
     coordPlayer.y--;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 };
 
 function irParaCima() {
@@ -364,7 +407,7 @@ function irParaCima() {
     coordPlayer.y--;
     console.clear();
     console.log(coordPlayer.y)
-    console.table(fase02);
+    console.log(fase02);
 };
 
 function manterChaveIrParaBaixo() {
@@ -372,7 +415,7 @@ function manterChaveIrParaBaixo() {
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 };
 
 function irParaBaixo() {
@@ -380,7 +423,7 @@ function irParaBaixo() {
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 };
 
 function manterChaveIrParaEsquerda() {
@@ -388,7 +431,7 @@ function manterChaveIrParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 };
 
 function irParaEsquerda() {
@@ -396,7 +439,7 @@ function irParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 
 function manterChaveIrParaDireita() {
@@ -404,7 +447,7 @@ function manterChaveIrParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 
 function irParaDireita() {
@@ -412,7 +455,7 @@ function irParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterBotaoIrParaCima() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
@@ -420,28 +463,28 @@ function manterBotaoIrParaCima() {
     coordPlayer.y--;
     console.clear();
     console.log(coordPlayer.y)
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterBotaoIrParaBaixo() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterBotaoIrParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterBotaoIrParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 function sairDoBotao() {
     if (estaNoBotaoVerde() || estaNoBotaoAzulEscuro() || estaNoBotaoAzulClaro() || estaNoBotaoAmarelo() || estaNoBotaoLaranja()) {
@@ -454,28 +497,28 @@ function manterPortaIrParaCima() {
     coordPlayer.y--;
     console.clear();
     console.log(coordPlayer.y)
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterPortaIrParaBaixo() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterPortaIrParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 function manterPortaIrParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
     console.clear();
-    console.table(fase02);
+    console.log(fase02);
 }
 
 document.addEventListener ('keydown', (controles) => {
@@ -501,6 +544,8 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaCima();
                     }
+                } else if (checarEspinho(87)) {
+                    morteEGameOver ();
                 }
                 break;
             case 83: // S
@@ -524,6 +569,9 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaBaixo();
                     }
+                } else if (checarEspinho(83)) {
+                    console.log('cu');
+                    morteEGameOver ();
                 }
                 break;
             case 65: // A
@@ -545,6 +593,8 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaEsquerda();
                     }
+                } else if (checarEspinho(65)) {
+                    morteEGameOver ();
                 }
                 break;
             case 68: // D
@@ -566,6 +616,8 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaDireita();
                     }
+                } else if (checarEspinho(68)) {
+                    morteEGameOver ();
                 }
                 break;
             case 73: // I
@@ -573,23 +625,40 @@ document.addEventListener ('keydown', (controles) => {
                     redDoor = unlockedDoor;
                     fase02[fixedCoords.redDoor.y][fixedCoords.redDoor.x] = redDoor;
                     console.clear();
-                    console.table(fase02); 
+                    console.log(fase02); 
                 }
                 if(estaNaChaveRosa()) {
                     finalDoor = unlockedDoor;
                     fase02[fixedCoords.finalDoor.y][fixedCoords.finalDoor.x] = finalDoor;
                     console.clear();
-                    console.table(fase02); 
+                    console.log(fase02); 
                 }
                 if(estaNaChaveRoxa()) {
                     purpleDoor = unlockedDoor;
                     fase02[fixedCoords.purpleDoor.y][fixedCoords.purpleDoor.x] = purpleDoor;
                     console.clear();
-                    console.table(fase02); 
+                    console.log(fase02); 
                 }                    
                                
                 if(estaNoBotaoAmarelo()) {
-                    
+                    for (let j = 14; j < 25; j++) {
+                        if (j == 14 || j == 15) {
+                            fase02[3][j] = spikes;
+                            
+                        } else if (j === 16) {
+                            fase02[5][j] = spikes;
+                            fase02[6][j] = spikes;
+                        }
+                        if (j === 20) {
+                            fase02[4][j] = spikes;
+                            fase02[5][j] = spikes;
+                        } 
+                        if (j === 23 || j === 24 || j === 25) {
+                            fase02[12][j] = spikes;
+                        }
+                        console.clear();
+                        console.log(fase02); 
+                    }   
                 }
                 if(estaNoBotaoAzulClaro()) {
                     for (let j = 17; j < 29; j++) {
@@ -617,7 +686,7 @@ document.addEventListener ('keydown', (controles) => {
                         }
                     }                    
                     console.clear;
-                    console.table(fase02); 
+                    console.log(fase02); 
                 }
                 if(estaNoBotaoAzulEscuro()) {
                     for (let i = 22; i <= 28; i++) {
@@ -640,10 +709,13 @@ document.addEventListener ('keydown', (controles) => {
                         }
                     }
                     console.clear();
-                    console.table(fase02);
+                    console.log(fase02);
                 }   
                 if(estaNoBotaoLaranja()) {
-                    
+                    fase02[4][26] = ' ';
+                    fase02[5][26] = ' ';
+                    console.clear();
+                    console.log(fase02);
                 }
                 if(estaNoBotaoVerde()) {
                     for (let j = 5; j <= 11; j++) {
@@ -658,7 +730,7 @@ document.addEventListener ('keydown', (controles) => {
                         fase02[i][8] = spikes;
                     }
                     console.clear;
-                    console.table(fase02); 
+                    console.log(fase02); 
                 }    
                 
                 if (estaNaPortaFinal()) {
