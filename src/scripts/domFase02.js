@@ -323,12 +323,14 @@ function morteEGameOver () {
         fase02[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
         coordPlayer.y = 2;
-        fase02 = fase02Início1morte;  
+        fase02 = fase02Início1morte;
+        carregarMapa();
     } else if(vidas === 1) {
         fase02[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
         coordPlayer.y = 2;
         fase02 = fase02Início2morte;
+        carregarMapa();
     }
 }
 

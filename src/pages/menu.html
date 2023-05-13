@@ -29,9 +29,15 @@
         </div>
         <div>
             <button>
-                <a href="#">Sair</a>
+                <a id="fechar-guia">Sair</a>
             </button>
         </div>
     </div>    
+    <script>
+        const botaoDeSair = document.getElementById('fechar-guia');
+        botaoDeSair.addEventListener('click', (botaoDeSair) => {
+            window.close();
+        });
+    </script>
 </body>
 </html>
