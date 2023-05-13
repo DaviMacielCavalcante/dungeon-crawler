@@ -17,251 +17,276 @@ const fixedCoords = {
     yellowButton: {x: 28, y: 17},
     orangeButton: {x: 21, y: 1}
 };
-for (let i = 0; i < 30; i++) {
-    fase02[i] = new Array(30);
-    fase02Início1morte[i] = new Array(30);
-    fase02Início2morte[i] = new Array(30);
-};
-    
-for (let i = 0; i < 30; i++) {
-    for(let j = 0; j < 30; j++) {
-        switch (i) {
-            case 1:
-                if (j === 0 || j === 12 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else if (j === fixedCoords.orangeButton.x) {
-                    fase02[i][j] = orangeButton;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 2:
-                if (j === 0 || j === 12 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else if (j === coordPlayer.x) {
-                    fase02[i][j] = player;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 3: 
-                if (j === 0 || j === 12 || j >= 16 && j <= 22 || j >= 26 && j <= 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 4:
-                if (j >= 0 && j <= 8 || j === 12 || j === 26 || j === 29 ) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 5:
-                if (j === 0 || j === 12 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 6:
-                if (j === 0 || j === 12 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 7:
-                if (j === 0 || j >= 4 && j <= 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 8:
-                if (j === 0 || j === 4 || j === 12 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 9:
-                if (j === 0 || j === 4 || j === 12 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 10:
-                if (j === 0 || j === 4 || j === 12 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 11:
-                if (j === 0 || j === 4 || j >= 12 && j <= 14 || j >= 16 && j <= 18 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else if (j === 15) {
-                    purpleDoor = lockedDoor;
-                    fase02[i][j] = purpleDoor;
-                } else if (j === fixedCoords.pinkKey.x) {
-                    fase02[i][j] = pinkKey;
-                } else if (j === fixedCoords.redKey.x) {
-                    fase02[i][j] = redKey;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 12:
-                if (j === 0 || j === 4 || j === 12 || j === 18 || j >= 22 && j <= 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 13:
-                if (j === 0 || j === 4 || j === 12 || j === 18 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 14:
-                if (j === 0 || j === 4 || j === 12 || j === 18 || j === 22) {
-                    fase02[i][j] = '*';
-                } else if (j === fixedCoords.greenButton.x) {
-                    fase02[i][j] = greenButton;
-                } else if (j === fixedCoords.lightBlueButton.x) {
-                    fase02[i][j] = lightBlueButton;
-                } else if (j === fixedCoords.finalDoor.x) {
-                    pinkDoor = lockedDoor;
-                    fase02[i][j] = pinkDoor;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 15:
-                if (j === 0 || j === 4 || j === 12 || j === 18 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 16:
-                if (j >= 0 && j <= 8 || j >= 10 && j <= 18 || j === 22 || j >= 26 && j <= 29) {
-                    fase02[i][j] = '*';
-                } else if (j === 9) {
-                    redDoor = lockedDoor;
-                    fase02[i][j] = redDoor;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 17:
-                if (j === 0 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else if (j === fixedCoords.yellowButton.x) {
-                    fase02[i][j] = yellowButton;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 18:
-                if (j === 0 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 19:
-                if (j === 0 || j === 3 || j === 7 || j === 11 || j >= 15 && j <= 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 20:
-                if (j === 0 || j === 3 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else if (j === fixedCoords.darkBlueButton.x) {
-                    fase02[i][j] = darkBlueButton;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 21:
-                if (j === 0 || j === 3 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 22:
-                if (j === 0 || j >= 3 && j <= 7 || j === 11 || j >= 15 && j <= 19 || j === 22 || j === 26 || j === 29 ) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 23:
-                if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-            case 24:
-                if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 25:
-                if (j === 0 || j === 11 || j === 15 || j >= 18 && j <= 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 26:
-                if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 27:
-                if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else if (j === fixedCoords.purpleKey.x) {
-                    fase02[i][j] =  purpleKey;
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            case 28:
-                if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
-                    fase02[i][j] = '*';
-                } else {
-                    fase02[i][j] = ' ';
-                }
-                break;
-            default:
-                fase02[i][j] = '*';
-                break;
-        }
-    } 
-};
-for (let i = 0; i < 30; i++) {
-    for(let j = 0; j < 30; j++) {
-        fase02Início1morte[i][j] = fase02[i][j];
-        fase02Início2morte[i][j] = fase02[i][j];
-    }
-};
 
-console.log(fase02);
+function mapa() {
+    for (let i = 0; i < 30; i++) {
+        fase02[i] = new Array(30);
+        fase02Início1morte[i] = new Array(30);
+        fase02Início2morte[i] = new Array(30);
+    };
+        
+    for (let i = 0; i < 30; i++) {
+        for(let j = 0; j < 30; j++) {
+            switch (i) {
+                case 1:
+                    if (j === 0 || j === 12 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === fixedCoords.orangeButton.x) {
+                        fase02[i][j] = orangeButton;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 2:
+                    if (j === 0 || j === 12 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === coordPlayer.x) {
+                        fase02[i][j] = player;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 3: 
+                    if (j === 0 || j === 12 || j >= 16 && j <= 22 || j >= 26 && j <= 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 4:
+                    if (j >= 0 && j <= 8 || j === 12 || j === 26 || j === 29 ) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 5:
+                    if (j === 0 || j === 12 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 6:
+                    if (j === 0 || j === 12 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 7:
+                    if (j === 0 || j >= 4 && j <= 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 8:
+                    if (j === 0 || j === 4 || j === 12 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 9:
+                    if (j === 0 || j === 4 || j === 12 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 10:
+                    if (j === 0 || j === 4 || j === 12 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 11:
+                    if (j === 0 || j === 4 || j >= 12 && j <= 14 || j >= 16 && j <= 18 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === 15) {
+                        purpleDoor = lockedDoor;
+                        fase02[i][j] = purpleDoor;
+                    } else if (j === fixedCoords.pinkKey.x) {
+                        fase02[i][j] = pinkKey;
+                    } else if (j === fixedCoords.redKey.x) {
+                        fase02[i][j] = redKey;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 12:
+                    if (j === 0 || j === 4 || j === 12 || j === 18 || j >= 22 && j <= 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 13:
+                    if (j === 0 || j === 4 || j === 12 || j === 18 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 14:
+                    if (j === 0 || j === 4 || j === 12 || j === 18 || j === 22) {
+                        fase02[i][j] = '*';
+                    } else if (j === fixedCoords.greenButton.x) {
+                        fase02[i][j] = greenButton;
+                    } else if (j === fixedCoords.lightBlueButton.x) {
+                        fase02[i][j] = lightBlueButton;
+                    } else if (j === fixedCoords.finalDoor.x) {
+                        pinkDoor = lockedDoor;
+                        fase02[i][j] = pinkDoor;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 15:
+                    if (j === 0 || j === 4 || j === 12 || j === 18 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 16:
+                    if (j >= 0 && j <= 8 || j >= 10 && j <= 18 || j === 22 || j >= 26 && j <= 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === 9) {
+                        redDoor = lockedDoor;
+                        fase02[i][j] = redDoor;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 17:
+                    if (j === 0 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === fixedCoords.yellowButton.x) {
+                        fase02[i][j] = yellowButton;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 18:
+                    if (j === 0 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 19:
+                    if (j === 0 || j === 3 || j === 7 || j === 11 || j >= 15 && j <= 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 20:
+                    if (j === 0 || j === 3 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === fixedCoords.darkBlueButton.x) {
+                        fase02[i][j] = darkBlueButton;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 21:
+                    if (j === 0 || j === 3 || j === 7 || j === 11 || j === 22 || j === 26 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 22:
+                    if (j === 0 || j >= 3 && j <= 7 || j === 11 || j >= 15 && j <= 19 || j === 22 || j === 26 || j === 29 ) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 23:
+                    if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                case 24:
+                    if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 25:
+                    if (j === 0 || j === 11 || j === 15 || j >= 18 && j <= 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 26:
+                    if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 27:
+                    if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else if (j === fixedCoords.purpleKey.x) {
+                        fase02[i][j] =  purpleKey;
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                case 28:
+                    if (j === 0 || j === 11 || j === 15 || j === 22 || j === 29) {
+                        fase02[i][j] = '*';
+                    } else {
+                        fase02[i][j] = ' ';
+                    }
+                    break;
+                default:
+                    fase02[i][j] = '*';
+                    break;
+            }
+        } 
+    };
+
+    for (let i = 0; i < 30; i++) {
+        for(let j = 0; j < 30; j++) {
+            fase02Início1morte[i][j] = fase02[i][j];
+            fase02Início2morte[i][j] = fase02[i][j];
+        }
+    };
+}
+
+
+function carregarMapa() {
+    const tela = document.querySelector('#tela-jogo');
+    let linha = [];
+    let coluna;
+
+    tela.innerHTML = '';
+
+    
+    for (let i = 0; i < 30; i++) {
+        linha = document.createElement('tr');
+        for (let j = 0; j < 30; j++) {            
+            coluna = document.createElement('td');
+            coluna.innerHTML = `
+                ${fase02[i][j]}
+            `;
+            linha.appendChild(coluna);
+        };
+        tela.appendChild(linha);
+    };  
+}
+
 
 function checarEspacoVazio(direcao) {
     switch (direcao) {
@@ -293,20 +318,17 @@ function morteEGameOver () {
     vidas--;
     if (vidas === 0) {
         alert('FIM DE JOGO');
+        window.location.href = '../pages/derrota.html';
     } else if (vidas === 2) {
         fase02[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
         coordPlayer.y = 2;
-        fase02 = fase02Início1morte;
-        console.clear();
-        console.log(fase02);  
+        fase02 = fase02Início1morte;  
     } else if(vidas === 1) {
         fase02[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
         coordPlayer.y = 2;
         fase02 = fase02Início2morte;
-        console.clear();
-        console.log(fase02);  
     }
 }
 
@@ -397,94 +419,68 @@ function manterChaveIrParaCima() {
     fase02[coordPlayer.y][coordPlayer.x] = key;
     fase02[coordPlayer.y - 1][coordPlayer.x] = player;
     coordPlayer.y--;
-    console.clear();
-    console.log(fase02);
 };
 
 function irParaCima() {
     fase02[coordPlayer.y][coordPlayer.x] = ' ';
     fase02[coordPlayer.y - 1][coordPlayer.x] = player;
     coordPlayer.y--;
-    console.clear();
-    console.log(coordPlayer.y)
-    console.log(fase02);
 };
 
 function manterChaveIrParaBaixo() {
     fase02[coordPlayer.y][coordPlayer.x] = key;
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
-    console.clear();
-    console.log(fase02);
 };
 
 function irParaBaixo() {
     fase02[coordPlayer.y][coordPlayer.x] = ' ';
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
-    console.clear();
-    console.log(fase02);
 };
 
 function manterChaveIrParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x] = key;
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
-    console.clear();
-    console.log(fase02);
 };
 
 function irParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x] = ' ';
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
-    console.clear();
-    console.log(fase02);
 }
 
 function manterChaveIrParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x] = key;
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
-    console.clear();
-    console.log(fase02);
 }
 
 function irParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x] = ' ';
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
-    console.clear();
-    console.log(fase02);
 }
 function manterBotaoIrParaCima() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y - 1][coordPlayer.x] = player;
     coordPlayer.y--;
-    console.clear();
-    console.log(coordPlayer.y)
-    console.log(fase02);
 }
 function manterBotaoIrParaBaixo() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
-    console.clear();
-    console.log(fase02);
 }
 function manterBotaoIrParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
-    console.clear();
-    console.log(fase02);
 }
 function manterBotaoIrParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x] = button;
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
-    console.clear();
-    console.log(fase02);
 }
 function sairDoBotao() {
     if (estaNoBotaoVerde() || estaNoBotaoAzulEscuro() || estaNoBotaoAzulClaro() || estaNoBotaoAmarelo() || estaNoBotaoLaranja()) {
@@ -495,30 +491,21 @@ function manterPortaIrParaCima() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y - 1][coordPlayer.x] = player;
     coordPlayer.y--;
-    console.clear();
-    console.log(coordPlayer.y)
-    console.log(fase02);
 }
 function manterPortaIrParaBaixo() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y + 1][coordPlayer.x] = player;
     coordPlayer.y++;
-    console.clear();
-    console.log(fase02);
 }
 function manterPortaIrParaEsquerda() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y][coordPlayer.x - 1] = player;
     coordPlayer.x--;
-    console.clear();
-    console.log(fase02);
 }
 function manterPortaIrParaDireita() {
     fase02[coordPlayer.y][coordPlayer.x] = unlockedDoor;
     fase02[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
-    console.clear();
-    console.log(fase02);
 }
 
 document.addEventListener ('keydown', (controles) => {
@@ -528,21 +515,27 @@ document.addEventListener ('keydown', (controles) => {
 
                     if (estaNaChaveVermelha() && redDoor === lockedDoor) {
                         manterChaveIrParaCima();
+                        carregarMapa();
 
                     } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
                         manterChaveIrParaCima();
+                        carregarMapa();
 
                     } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
                         manterChaveIrParaCima();
+                        carregarMapa();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaCima();
+                        carregarMapa();
 
                     } else if (estaNumaPorta()) {
                         manterPortaIrParaCima();
+                        carregarMapa();
 
                     } else {
                         irParaCima();
+                        carregarMapa();
                     }
                 } else if (checarEspinho(87)) {
                     morteEGameOver ();
@@ -553,24 +546,29 @@ document.addEventListener ('keydown', (controles) => {
 
                     if (estaNaChaveVermelha() && redDoor === lockedDoor) {
                         manterChaveIrParaBaixo();
+                        carregarMapa();
 
                     } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
                         manterChaveIrParaBaixo();
+                        carregarMapa();
 
                     } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
                         manterChaveIrParaBaixo();
+                        carregarMapa();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaBaixo();
+                        carregarMapa();
 
                     } else if (estaNumaPorta()) {
                         manterPortaIrParaBaixo();
+                        carregarMapa();
 
                     } else {
                         irParaBaixo();
+                        carregarMapa();
                     }
                 } else if (checarEspinho(83)) {
-                    console.log('cu');
                     morteEGameOver ();
                 }
                 break;
@@ -579,19 +577,25 @@ document.addEventListener ('keydown', (controles) => {
 
                     if (estaNaChaveVermelha() && redDoor === lockedDoor) {
                         manterChaveIrParaEsquerda();
+                        carregarMapa();
 
                     } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
                         manterChaveIrParaEsquerda();
+                        carregarMapa();
 
                     } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
                         manterChaveIrParaEsquerda();
+                        carregarMapa();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaEsquerda();
+                        carregarMapa();
                     } else if (estaNumaPorta()) {
                         manterBotaoIrParaEsquerda();
+                        carregarMapa();
                     } else {
                         irParaEsquerda();
+                        carregarMapa();
                     }
                 } else if (checarEspinho(65)) {
                     morteEGameOver ();
@@ -602,19 +606,25 @@ document.addEventListener ('keydown', (controles) => {
 
                     if (estaNaChaveVermelha() && redDoor === lockedDoor) {
                         manterChaveIrParaDireita();
+                        carregarMapa();
 
                     } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
                         manterChaveIrParaDireita();
+                        carregarMapa();
 
                     } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
                         manterChaveIrParaDireita();
+                        carregarMapa();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaDireita();
+                        carregarMapa();
                     } else if (estaNumaPorta()) {
                         manterPortaIrParaDireita();
+                        carregarMapa();
                     } else {
                         irParaDireita();
+                        carregarMapa();
                     }
                 } else if (checarEspinho(68)) {
                     morteEGameOver ();
@@ -624,20 +634,17 @@ document.addEventListener ('keydown', (controles) => {
                 if(estaNaChaveVermelha()) {
                     redDoor = unlockedDoor;
                     fase02[fixedCoords.redDoor.y][fixedCoords.redDoor.x] = redDoor;
-                    console.clear();
-                    console.log(fase02); 
+                    carregarMapa();
                 }
                 if(estaNaChaveRosa()) {
                     finalDoor = unlockedDoor;
                     fase02[fixedCoords.finalDoor.y][fixedCoords.finalDoor.x] = finalDoor;
-                    console.clear();
-                    console.log(fase02); 
+                    carregarMapa();
                 }
                 if(estaNaChaveRoxa()) {
                     purpleDoor = unlockedDoor;
                     fase02[fixedCoords.purpleDoor.y][fixedCoords.purpleDoor.x] = purpleDoor;
-                    console.clear();
-                    console.log(fase02); 
+                    carregarMapa();
                 }                    
                                
                 if(estaNoBotaoAmarelo()) {
@@ -656,8 +663,7 @@ document.addEventListener ('keydown', (controles) => {
                         if (j === 23 || j === 24 || j === 25) {
                             fase02[12][j] = ' ';
                         }
-                        console.clear();
-                        console.log(fase02); 
+                        carregarMapa();
                     }   
                 }
                 if(estaNoBotaoAzulClaro()) {
@@ -685,8 +691,7 @@ document.addEventListener ('keydown', (controles) => {
                             fase02[25][j] = spikes;
                         }
                     }                    
-                    console.clear;
-                    console.log(fase02); 
+                    carregarMapa();
                 }
                 if(estaNoBotaoAzulEscuro()) {
                     for (let i = 22; i <= 28; i++) {
@@ -708,14 +713,12 @@ document.addEventListener ('keydown', (controles) => {
                             fase02[i][11] = spikes;
                         }
                     }
-                    console.clear();
-                    console.log(fase02);
+                    carregarMapa();
                 }   
                 if(estaNoBotaoLaranja()) {
                     fase02[4][26] = ' ';
                     fase02[5][26] = ' ';
-                    console.clear();
-                    console.log(fase02);
+                    carregarMapa();
                 }
                 if(estaNoBotaoVerde()) {
                     for (let j = 5; j <= 11; j++) {
@@ -729,12 +732,15 @@ document.addEventListener ('keydown', (controles) => {
                     for (let i = 10; i <= 13; i++) {
                         fase02[i][8] = spikes;
                     }
-                    console.clear;
-                    console.log(fase02); 
+                    carregarMapa();
                 }    
                 
                 if (estaNaPortaFinal()) {
                     alert('proxima fase')
+                    window.location.href = '../pages/fase03.html';
                 }
     };
 });
+
+document.addEventListener("DOMContentLoaded", mapa);
+document.addEventListener("DOMContentLoaded", carregarMapa);

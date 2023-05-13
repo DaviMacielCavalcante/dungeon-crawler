@@ -300,6 +300,7 @@ document.addEventListener ('keydown', (controles) => {
                 }
                 if (acimaDaPortaDestrancada()) {
                     alert('proxima fase')
+                    window.location.href = '../pages/fase02.html';
                 }
     };
 });
