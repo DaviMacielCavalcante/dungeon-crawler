@@ -4,6 +4,11 @@ const player = '&', spikes = '#', key = '@', lockedDoor = 'D', unlockedDoor = '=
 const redKey = key, purpleKey = key, pinkKey = key;
 const  greenButton = button, darkBlueButton = button, lightBlueButton = button, yellowButton = button, orangeButton = button;
 let coordPlayer = {x: 2, y: 2,};
+
+const onload = window.addEventListener('load', (onload) => {
+    document.body.style.zoom = "75%";
+});
+
 const fixedCoords = {
     redDoor: {x: 9, y: 16},
     purpleDoor: {x: 15, y: 11},
