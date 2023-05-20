@@ -29,7 +29,7 @@ const fixedCoords = {
 };
 
 const onload = window.addEventListener('load', (onload) => {
-    document.body.style.zoom = "50%";
+    document.body.style.zoom = "75%";
 });
 
 function mapa() {
@@ -759,34 +759,26 @@ function estaNaChaveVermelha() {
     return coordPlayer.x === fixedCoords.redKey.x && coordPlayer.y === fixedCoords.redKey.y;
 };
 
-function estaNaChaveRoxa() {
-    return coordPlayer.x === fixedCoords.purpleKey.x && coordPlayer.y === fixedCoords.purpleKey.y;
+function estaNaChaveAzulClaro() {
+    return coordPlayer.x === fixedCoords.lightBlueKey.x && coordPlayer.y === fixedCoords.lightBlueKey.y;
 };
 
-function estaNaChaveRosa() {
-    return coordPlayer.x === fixedCoords.pinkKey.x && coordPlayer.y === fixedCoords.pinkKey.y;
+function estaNaChaveVerde() {
+    return coordPlayer.x === fixedCoords.greenKey.x && coordPlayer.y === fixedCoords.greenKeyKey.y;
 };
 
 // ################################# CHECAR BOTÕES ########################################################
-
-function estaNoBotaoVerde() {
-    return coordPlayer.x === fixedCoords.greenButton.x && coordPlayer.y === fixedCoords.greenButton.y;
-};
 
 function estaNoBotaoAzulEscuro() {
     return coordPlayer.x === fixedCoords.darkBlueButton.x && coordPlayer.y === fixedCoords.darkBlueButton.y;
 };
 
-function estaNoBotaoAzulClaro() {
-    return coordPlayer.x === fixedCoords.lightBlueButton.x && coordPlayer.y === fixedCoords.lightBlueButton.y;
+function estaNoBotaoRoxo() {
+    return coordPlayer.x === fixedCoords.purpleButton.x && coordPlayer.y === fixedCoords.purpleButton.y;
 };
 
-function estaNoBotaoAmarelo() {
-    return coordPlayer.x === fixedCoords.yellowButton.x && coordPlayer.y === fixedCoords.yellowButton.y;
-};
-
-function estaNoBotaoLaranja() {
-    return coordPlayer.x === fixedCoords.orangeButton.x && coordPlayer.y === fixedCoords.orangeButton.y;
+function estaNoBotaoRosa() {
+    return coordPlayer.x === fixedCoords.pinkButton.x && coordPlayer.y === fixedCoords.pinkButton.y;
 };
 
 // ################################# CHECAR SE ESTÁ EM CIMA DE TELEPORTES ########################################################
@@ -886,7 +878,9 @@ function irParaDireita() {
 function estaNumaPorta() {
     if (coordPlayer.x === fixedCoords.redDoor.x && coordPlayer.y === fixedCoords.redDoor.y) {
         return true
-    } else if (coordPlayer.x === fixedCoords.purpleDoor.x && coordPlayer.y === fixedCoords.purpleDoor.y) {
+    } else if (coordPlayer.x === fixedCoords.greenDoor.x && coordPlayer.y === fixedCoords.greenDoor.y) {
+        return true    
+    } else if (coordPlayer.x === fixedCoords.lightBlueDoor.x && coordPlayer.y === fixedCoords.lightBlueDoor.y) {
         return true
     }
 }
@@ -948,7 +942,7 @@ function manterBotaoIrParaDireita() {
 // ################################# SAIR DE TP/BOTÃO ########################################################
 
 function sairDoBotao() {
-    if (estaNoBotaoVerde() || estaNoBotaoAzulEscuro() || estaNoBotaoAzulClaro() || estaNoBotaoAmarelo() || estaNoBotaoLaranja()) {
+    if (estaNoBotaoAzulEscuro() || estaNoBotaoRoxo() || estaNoBotaoRosa()) {
         return true;
     }
 }
@@ -995,11 +989,11 @@ document.addEventListener ('keydown', (controles) => {
                         manterChaveIrParaCima();
                         carregarMapa();
 
-                    } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
+                    } else if (estaNaChaveAzulClaro() && lightBlueDoor === lockedDoor) {
                         manterChaveIrParaCima();
                         carregarMapa();
 
-                    } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
+                    } else if (estaNaChaveVerde() && greenDoor === lockedDoor) {
                         manterChaveIrParaCima();
                         carregarMapa();
 
@@ -1070,11 +1064,11 @@ document.addEventListener ('keydown', (controles) => {
                         manterChaveIrParaBaixo();
                         carregarMapa();
 
-                    } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
+                    } else if (estaNaChaveAzulClaro() && lightBlueDoorDoor === lockedDoor) {
                         manterChaveIrParaBaixo();
                         carregarMapa();
 
-                    } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
+                    } else if (estaNaChaveVerde() && greenDoor === lockedDoor) {
                         manterChaveIrParaBaixo();
                         carregarMapa();
                         
@@ -1142,15 +1136,15 @@ document.addEventListener ('keydown', (controles) => {
                 if (checarEspacoVazio(65) || checarEspacoChave(65) || checarPorta(65) || checarBotao(65) || checarTp(65)) {
 
                     if (estaNaChaveVermelha() && redDoor === lockedDoor) {
-                        manterChaveIrParaEsquerda();
+                        manterChaveIrParaBaixo();
                         carregarMapa();
 
-                    } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
-                        manterChaveIrParaEsquerda();
+                    } else if (estaNaChaveAzulClaro() && lightBlueDoorDoor === lockedDoor) {
+                        manterChaveIrParaBaixo();
                         carregarMapa();
 
-                    } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
-                        manterChaveIrParaEsquerda();
+                    } else if (estaNaChaveVerde() && greenDoor === lockedDoor) {
+                        manterChaveIrParaBaixo();
                         carregarMapa();
 
                     } else if (estaNoTpAmareloA()) {
@@ -1215,15 +1209,15 @@ document.addEventListener ('keydown', (controles) => {
                 if (checarEspacoVazio(68) || checarEspacoChave(68) || checarPorta(68) || checarBotao(68) || checarTp(68)) {
 
                     if (estaNaChaveVermelha() && redDoor === lockedDoor) {
-                        manterChaveIrParaDireita();
+                        manterChaveIrParaBaixo();
                         carregarMapa();
 
-                    } else if (estaNaChaveRoxa() && purpleDoor === lockedDoor) {
-                        manterChaveIrParaDireita();
+                    } else if (estaNaChaveAzulClaro() && lightBlueDoorDoor === lockedDoor) {
+                        manterChaveIrParaBaixo();
                         carregarMapa();
 
-                    } else if (estaNaChaveRosa() && pinkDoor === lockedDoor) {
-                        manterChaveIrParaDireita();
+                    } else if (estaNaChaveVerde() && greenDoor === lockedDoor) {
+                        manterChaveIrParaBaixo();
                         carregarMapa();
 
                     } else if (estaNoTpAmareloA()) {
