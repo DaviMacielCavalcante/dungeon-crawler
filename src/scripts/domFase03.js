@@ -461,6 +461,80 @@ function mapa() {
                         fase03[i][j] = ' ';
                     }
                     break;
+                case 51:
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || j === 20 || j === 24 || j === 43 || j === 47 || j === 49 || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 6 || j === 10) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 52:
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || j === 20 || (j >= 43 && j <= 45) || j === 47 || j === 49 || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 6 || j === 7 || j === 10) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 53:
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || j === 20 || j === 43 || j === 45 || j === 47 || j === 49 || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 1 || j === 2 || j === 10 || j === 14 || j === 53 || j === 58) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 54:
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || j === 20 || j === 43 || j === 45 || j === 47 || j === 49 || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 10 || j === 58) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 55:
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || (j >= 20 && j <= 39) || j === 43 || j === 45 || (j >= 47 && j <= 49) || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 57 || j === 58) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 56:
+                    if (j === 0 || j === 12 || j === 16 || j === 43 || j === 45 || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 57 || j === 58) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 57:
+                    if (j === 0 || j === 12 || j === 16 || j === 43 || (j >= 45 && j <= 48) || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 53 || j === 58) {
+                        fase03[i][j] = spikes;                    
+                    } else if (j === 14) {
+                        fase03[i][j] = tpVerdeA;
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
+                case 58:
+                    if (j === 0 || j === 12 || j === 16 || j === 43 || j === 51 || j === 55 || j === 59) {
+                        fase03[i][j] = '*';
+                    } else if (j === 58) {
+                        fase03[i][j] = spikes;                    
+                    } else {
+                        fase03[i][j] = ' ';
+                    }
+                    break;
                 default:
                     fase03[i][j] = '*';
                     break;
