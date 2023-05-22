@@ -1,10 +1,15 @@
 let fase03 = [], fase03Inicio1morte = [], fase03Inicio2Morte = [], vidas = 3;
-let redDoor, lightBlueDoor, greenDoor;
+let redDoor1, redDoor2, lightBlueDoor, greenDoor;
 const player = '&', wall = '*' , spikes = '#', key = '@', lockedDoor = 'D', unlockedDoor = '=', button = 'O', tp = '>', paredeAtravessavelEsq = '}', paredeAtravessavelDir = '{';
 const redKey = key, lightBlueKey = key, greenKey = key;
 const tpLaranjaA = tp, tpLaranjaB = tp, tpVerdeA = tp, tpVerdeB = tp, tpRoxoA = tp, tpRoxoB = tp, tpAmareloA = tp, tpAmareloB = tp, tpAzulClaroA = tp, tpAzulClaroB = tp;
 const darkBlueButton = button, purpleButton = button, pinkButton = button, redButton = button;
 let coordPlayer = {x: 2, y: 22};
+const coordsFinais = {
+    f1: {x: 59, y: 11},
+    f2: {x: 59, y: 12},
+    f3: {x: 59, y: 13}
+};
 const fixedCoords = {
     redKey: {x: 22, y: 40},
     lightBlueKey: {x: 2, y: 26},
@@ -22,8 +27,9 @@ const fixedCoords = {
     darkBlueButton: {x: 22, y: 25},
     purpleButton: {x: 6, y: 10},
     pinkButton: {x: 22, y: 50},
-    redButton: {x: 52, y: 33,},
-    redDoor: {x: 51, y: 2},
+    redButton: {x: 53, y: 33,},
+    redDoor1: {x: 51, y: 2},
+    redDoor2: {x: 53, y: 23},
     greenDoor: {x: 51, y: 16},
     lightBlueDoor: {x: 41, y: 35},
 };
@@ -62,9 +68,9 @@ function mapa() {
                         fase03[i][j] = tpAzulClaroA;
                     } else if (j === fixedCoords.tpAzulClaroB.x) {
                         fase03[i][j] = tpAzulClaroB;
-                    } else if (j === fixedCoords.redDoor.x) {
-                        redDoor = lockedDoor;
-                        fase03[i][j] = redDoor;
+                    } else if (j === fixedCoords.redDoor1.x) {
+                        redDoor1 = lockedDoor;
+                        fase03[i][j] = redDoor1;
                     } else {
                         fase03[i][j] = ' ';
                     }
@@ -221,7 +227,7 @@ function mapa() {
                         fase03[i][j] = wall;
                     } else if ((j >= 5 && j <= 16) || j === 40 || j === 48) {
                         fase03[i][j] = spikes;
-                    } else if (j === 36 || j === 48) {
+                    } else if (j === 36 || j === 44) {
                         fase03[i][j] = paredeAtravessavelDir;
                     } else {
                         fase03[i][j] = ' ';
@@ -266,10 +272,10 @@ function mapa() {
                     } else if (j === 25 || j === 26 || j === 31) {
                         fase03[i][j] = spikes;
                     } else if (j === 24 || j === 29) {
-                        fase03[i][j] = paredeAtravessavelEsq;  (j === fixedCoords.redDoor.x) 
+                        fase03[i][j] = paredeAtravessavelEsq;  (j === fixedCoords.redDoor2.x) 
                     } else if (j === 53) {
-                        redDoor = lockedDoor;
-                        fase03[i][j] = redDoor;
+                        redDoor2 = lockedDoor;
+                        fase03[i][j] = redDoor2;
                     } else {
                         fase03[i][j] = ' ';
                     }
@@ -659,6 +665,18 @@ function carregarMapa() {
     };  
 }
 
+function checarEspaçosFinais(direcao) {
+    if (direcao === 68) {
+        if (coordPlayer.y === coordsFinais.f1.y && coordPlayer.x + 1 === coordsFinais.f1.x) {
+            return true;
+        } else if (coordPlayer.y === coordsFinais.f2.y && coordPlayer.x + 1 === coordsFinais.f2.x) {
+            return true;
+        } else if (coordPlayer.y === coordsFinais.f3.y && coordPlayer.x + 1 === coordsFinais.f3.x) {
+            return true;
+        }
+    }
+}
+
 
 function checarEspacoVazio(direcao) {
     switch (direcao) {
@@ -911,7 +929,9 @@ function irParaDireita() {
 }
 
 function estaNumaPorta() {
-    if (coordPlayer.x === fixedCoords.redDoor.x && coordPlayer.y === fixedCoords.redDoor.y) {
+    if (coordPlayer.x === fixedCoords.redDoor1.x && coordPlayer.y === fixedCoords.redDoor1.y) {
+        return true
+    } else if (coordPlayer.x === fixedCoords.redDoor2.x && coordPlayer.y === fixedCoords.redDoor2.y) {
         return true
     } else if (coordPlayer.x === fixedCoords.greenDoor.x && coordPlayer.y === fixedCoords.greenDoor.y) {
         return true    
@@ -942,30 +962,6 @@ function manterPortaIrParaDireita() {
 }
 
 // ################################# MANTER BOTÃO ########################################################
-
-function manterBotaoIrParaCima() {
-    fase03[coordPlayer.y][coordPlayer.x] = button;
-    fase03[coordPlayer.y - 1][coordPlayer.x] = player;
-    coordPlayer.y--;
-}
-
-function manterBotaoIrParaBaixo() {
-    fase03[coordPlayer.y][coordPlayer.x] = button;
-    fase03[coordPlayer.y + 1][coordPlayer.x] = player;
-    coordPlayer.y++;
-}
-
-function manterBotaoIrParaEsquerda() {
-    fase03[coordPlayer.y][coordPlayer.x] = button;
-    fase03[coordPlayer.y][coordPlayer.x - 1] = player;
-    coordPlayer.x--;
-}
-
-function manterBotaoIrParaDireita() {
-    fase03[coordPlayer.y][coordPlayer.x] = button;
-    fase03[coordPlayer.y][coordPlayer.x + 1] = player;
-    coordPlayer.x++;
-}
 
 function manterBotaoIrParaCima() {
     fase03[coordPlayer.y][coordPlayer.x] = button;
@@ -1037,7 +1033,7 @@ document.addEventListener ('keydown', (controles) => {
             case 87: // W
                 if (checarEspacoVazio(87) || checarEspacoChave(87) || checarPorta(87) || checarBotao(87) || checarTp(87)) {
 
-                    if (estaNaChaveVermelha() && redDoor === lockedDoor) {
+                    if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaCima();
                         carregarMapa();
 
@@ -1112,7 +1108,7 @@ document.addEventListener ('keydown', (controles) => {
             case 83: // S
                 if (checarEspacoVazio(83)|| checarEspacoChave(83) || checarPorta(83) || checarBotao(83) || checarTp(83)) {
 
-                    if (estaNaChaveVermelha() && redDoor === lockedDoor) {
+                    if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaBaixo();
                         carregarMapa();
 
@@ -1187,7 +1183,7 @@ document.addEventListener ('keydown', (controles) => {
             case 65: // A
                 if (checarEspacoVazio(65) || checarEspacoChave(65) || checarPorta(65) || checarBotao(65) || checarTp(65) || checarParedeAtrvDir(65)) {
 
-                    if (estaNaChaveVermelha() && redDoor === lockedDoor) {
+                    if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaEsquerda();
                         carregarMapa();
 
@@ -1263,7 +1259,7 @@ document.addEventListener ('keydown', (controles) => {
             case 68: // D
                 if (checarEspacoVazio(68) || checarEspacoChave(68) || checarPorta(68) || checarBotao(68) || checarTp(68) || checarParedeAtrvEsq(68)) {
 
-                    if (estaNaChaveVermelha() && redDoor === lockedDoor) {
+                    if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaDireita();
                         carregarMapa();
 
@@ -1328,6 +1324,8 @@ document.addEventListener ('keydown', (controles) => {
                     } else if (checarParedeAtrvEsq(68)) {
                         passarParedeAtrvEsq();
                         carregarMapa();
+                    } else if (checarEspaçosFinais(68)) {
+                        window.location.href = "../pages/vitoria.html"
                     } else {
                         irParaDireita();
                         carregarMapa();
@@ -1338,8 +1336,10 @@ document.addEventListener ('keydown', (controles) => {
                 break;
             case 73: // I
                 if(estaNaChaveVermelha()) {
-                    redDoor = unlockedDoor;
-                    fase03[fixedCoords.redDoor.y][fixedCoords.redDoor.x] = redDoor;
+                    redDoor1 = unlockedDoor;
+                    redDoor2 = unlockedDoor;
+                    fase03[fixedCoords.redDoor1.y][fixedCoords.redDoor1.x] = redDoor1;
+                    fase03[fixedCoords.redDoor2.y][fixedCoords.redDoor2.x] = redDoor2;
                     carregarMapa();
                 }
                 if(estaNaChaveVerde()) {
@@ -1375,7 +1375,7 @@ document.addEventListener ('keydown', (controles) => {
                     carregarMapa();
                 }
                 if(estaNoBotaoRoxo()) {
-                    for (let i = 4; i <= 16; j++) {
+                    for (let i = 5; i <= 16; i++) {
                         if (i >= 5 && i <= 7) {
                             fase03[i][36] = ' ';
                         } else if (i === 12) {
@@ -1391,21 +1391,81 @@ document.addEventListener ('keydown', (controles) => {
                     carregarMapa();
                 }    
                 if(estaNoBotaoVermeho()) {
-                    for (let i = 28; i <= 31; j++) {
-                        if (i >= 28 && i <= 29) {
+                    for (let i = 28; i <= 31; i++) {
+                        if (i >= 28 && i <= 30) {
                             fase03[i][55] = ' ';
-                        } else if (i === 30) {
+                        } else if (i === 31) {
                             fase03[i][52] = ' ';
                             fase03[i][53] = ' ';
                             fase03[i][54] = ' ';                        
                         }                        
                     }
                     carregarMapa();
-                }    
-                
-                if (estaNaPortaFinal()) {
-                    alert('proxima fase')
-                    window.location.href = '../pages/fase03.html';
+                } 
+                if (estaNoTpAmareloA()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpAmareloA;
+                    fase03[fixedCoords.tpAmareloB.y][fixedCoords.tpAmareloB.x] = player;
+                    coordPlayer.x = fixedCoords.tpAmareloB.x
+                    coordPlayer.y = fixedCoords.tpAmareloB.y
+                    carregarMapa();
+                } else if (estaNoTpAmareloB()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpAmareloB;
+                    fase03[fixedCoords.tpAmareloA.y][fixedCoords.tpAmareloA.x] = player;
+                    coordPlayer.x = fixedCoords.tpAmareloA.x
+                    coordPlayer.y = fixedCoords.tpAmareloA.y
+                    carregarMapa();
+                }
+                if (estaNoTpAzulClaroA()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpAzulClaroA;
+                    fase03[fixedCoords.tpAzulClaroB.y][fixedCoords.tpAzulClaroB.x] = player;
+                    coordPlayer.x = fixedCoords.tpAzulClaroB.x
+                    coordPlayer.y = fixedCoords.tpAzulClaroB.y
+                    carregarMapa();
+                } else if (estaNoTpAzulClaroB()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpAzulClaroB;
+                    fase03[fixedCoords.tpAzulClaroA.y][fixedCoords.tpAzulClaroA.x] = player;
+                    coordPlayer.x = fixedCoords.tpAzulClaroA.x
+                    coordPlayer.y = fixedCoords.tpAzulClaroA.y
+                    carregarMapa();
+                }
+                if (estaNoTpLaranjaA()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpLaranjaA;
+                    fase03[fixedCoords.tpLaranjaB.y][fixedCoords.tpLaranjaB.x] = player;
+                    coordPlayer.x = fixedCoords.tpLaranjaB.x
+                    coordPlayer.y = fixedCoords.tpLaranjaB.y
+                    carregarMapa();
+                } else if (estaNoTpLaranjaB()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpLaranjaB;
+                    fase03[fixedCoords.tpLaranjaA.y][fixedCoords.tpLaranjaA.x] = player;
+                    coordPlayer.x = fixedCoords.tpLaranjaA.x
+                    coordPlayer.y = fixedCoords.tpLaranjaA.y
+                    carregarMapa();
+                }
+                if (estaNoTpRoxoA()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpRoxoA;
+                    fase03[fixedCoords.tpRoxoB.y][fixedCoords.tpRoxoB.x] = player;
+                    coordPlayer.x = fixedCoords.tpRoxoB.x
+                    coordPlayer.y = fixedCoords.tpRoxoB.y
+                    carregarMapa();
+                } else if (estaNoTpRoxoB()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpRoxoB;
+                    fase03[fixedCoords.tpRoxoA.y][fixedCoords.tpRoxoA.x] = player;
+                    coordPlayer.x = fixedCoords.tpRoxoA.x
+                    coordPlayer.y = fixedCoords.tpRoxoA.y
+                    carregarMapa();
+                }
+                if (estaNoTpVerdeA()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpVerdeA;
+                    fase03[fixedCoords.tpVerdeB.y][fixedCoords.tpVerdeB.x] = player;
+                    coordPlayer.x = fixedCoords.tpVerdeB.x;
+                    coordPlayer.y = fixedCoords.tpVerdeB.y;
+                    carregarMapa();
+                } else if (estaNoTpVerdeB()) {
+                    fase03[coordPlayer.y][coordPlayer.x] = tpVerdeB;
+                    fase03[fixedCoords.tpVerdeA.y][fixedCoords.tpVerdeA.x] = player;
+                    coordPlayer.x = fixedCoords.tpVerdeA.x
+                    coordPlayer.y = fixedCoords.tpVerdeA.y
+                    carregarMapa();
                 }
     };
 });
