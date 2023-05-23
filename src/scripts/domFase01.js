@@ -13,6 +13,10 @@ let coordDoor = {
     y: 1,
 }
 
+window.addEventListener('load', (onload) => {
+    document.body.style.zoom = "80%";
+});
+
 function mapa() {
     for (let i = 0; i < 15; i++) {
         fase01[i] = new Array(15);
@@ -22,7 +26,7 @@ function mapa() {
         for(let j = 0; j < 15; j++) {
             switch (i) {
                 case 1:
-                    if (coordPlayer.x === j) {                        
+                    if (j === coordPlayer.x) {                        
                         fase01[i][j] = player;
                     }
                     if (j === 0) {
@@ -36,8 +40,6 @@ function mapa() {
                 case 2:
                     if (j === 0 || j === 14) {
                         fase01[i][j] = '*';
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = ' ';
                     }
@@ -52,8 +54,7 @@ function mapa() {
                 case 4:
                     if (j === 0 || j === 14) {
                         fase01[i][j] = '*';
-                    }  else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
+
                     } else {
                         fase01[i][j] = ' ';
                     }
@@ -61,8 +62,7 @@ function mapa() {
                 case 5:
                     if (j === 0 || j === 14) {
                         fase01[i][j] = '*';
-                    }  else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
+ 
                     } else {
                         fase01[i][j] = ' ';
                     }
@@ -70,8 +70,7 @@ function mapa() {
                 case 6:
                     if (j >= 1 && j <= 3) {
                         fase01[i][j] = ' '
-                    }  else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
+
                     } else {
                         fase01[i][j] = '*'
                     }
@@ -79,8 +78,7 @@ function mapa() {
                 case 7:
                     if (j === 0 || j === 14) {
                         fase01[i][j] = '*'
-                    }  else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
+
                     } else {
                         fase01[i][j] = ' '
                     }
@@ -88,8 +86,6 @@ function mapa() {
                 case 8:
                     if (j === 0 || j === 14) {
                         fase01[i][j] = '*';
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = ' ';
                     }
@@ -97,8 +93,6 @@ function mapa() {
                 case 9:
                     if (j >= 11 && j <= 13) {
                         fase01[i][j] = ' ';
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = '*';
                     }
@@ -106,8 +100,6 @@ function mapa() {
                 case 10:
                     if (j === 0 || j === 4 || j === 8 || j === 14) {
                         fase01[i][j] = '*'
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = ' '
                     }
@@ -115,8 +107,6 @@ function mapa() {
                 case 11:
                     if (j === 0 || j === 4 || j === 6 || j === 8 || j === 10 || j === 14) {
                         fase01[i][j] = '*'
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = ' '
                     }
@@ -126,8 +116,6 @@ function mapa() {
                         fase01[i][j] = '*'
                     } else if (j === 2) {
                         fase01[i][j] = key;
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = ' '
                     }
@@ -135,8 +123,6 @@ function mapa() {
                 case 13:
                     if (j === 0 || j === 6 || j === 10 || j === 14) {
                         fase01[i][j] = '*'
-                    } else if (coordPlayer.x === i && coordPlayer.y === j) {                        
-                        fase01[i][j] = player;
                     } else {
                         fase01[i][j] = ' '
                     }
@@ -201,10 +187,8 @@ function carregarMapa() {
     const tela = document.querySelector('#tela-jogo');
     let linha = [];
     let coluna;
-
     tela.innerHTML = '';
 
-    
     for (let i = 0; i < 15; i++) {
         linha = document.createElement('tr');
         for (let j = 0; j < 15; j++) {            
@@ -299,7 +283,6 @@ document.addEventListener ('keydown', (controles) => {
                     carregarMapa(); 
                 }
                 if (acimaDaPortaDestrancada()) {
-                    alert('proxima fase')
                     window.location.href = '../pages/fase02.html';
                 }
     };

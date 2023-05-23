@@ -743,8 +743,7 @@ document.addEventListener ('keydown', (controles) => {
                 }    
                 
                 if (estaNaPortaFinal()) {
-                    alert('proxima fase')
-                    window.location.href = '../pages/fase03.html';
+                    window.location.href = "../pages/transição.html";
                 }
     };
 });

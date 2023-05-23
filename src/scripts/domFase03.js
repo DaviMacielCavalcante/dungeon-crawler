@@ -672,6 +672,14 @@ function mapa() {
     };
 }
 
+function scrollar () {
+    if (coordPlayer.y >= 30) {
+        window.scrollTo(0, document.body.scrollHeight);
+    } else {
+        window.scrollTo(0, 0);
+    };
+}
+
 
 function carregarMapa() {
     const tela = document.querySelector('#tela-jogo');
@@ -800,6 +808,7 @@ function morteEGameOver () {
         coordsFlechas.flechaGI3 = {x: 28, y: 15};
         fase03 = fase03Inicio1morte;
         carregarMapa();
+        scrollar();
     } else if(vidas === 1) {
         fase03[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
@@ -836,6 +845,7 @@ function morteEGameOver () {
         coordsFlechas.flechaGI3 = {x: 28, y: 15};
         fase03 = fase03Inicio2Morte;
         carregarMapa();
+        scrollar();
     }
 }
 
@@ -1515,6 +1525,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else if (sairDoTp()) {
                         manterTpIrParaCima();
                         carregarMapa();
+                        scrollar();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaCima();
@@ -1527,6 +1538,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaCima();
                         carregarMapa();
+                        scrollar();
                     }
                 } else if (checarEspinho(87) || checarFlechas(87)) {
                     morteEGameOver ();
@@ -1601,6 +1613,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else if (sairDoTp()) {
                         manterTpIrParaBaixo();
                         carregarMapa();
+                        scrollar();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaBaixo();
@@ -1613,6 +1626,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaBaixo();
                         carregarMapa();
+                        scrollar();
                     }
                 } else if (checarEspinho(83) || checarFlechas(83)) {
                     morteEGameOver ();
@@ -1631,6 +1645,7 @@ document.addEventListener ('keydown', (controles) => {
                     moverFlechasGH();
                     moverFlechasGI();
                     carregarMapa();
+                    scrollar();
 
                     if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaEsquerda();
@@ -1687,6 +1702,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else if (sairDoTp()) {
                         manterTpIrParaEsquerda();
                         carregarMapa();
+                        scrollar();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaEsquerda();
@@ -1774,6 +1790,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else if (sairDoTp()) {
                         manterTpIrParaDireita();
                         carregarMapa();
+                        scrollar();
 
                     } else if (sairDoBotao()) {
                         manterBotaoIrParaDireita();
@@ -1789,6 +1806,7 @@ document.addEventListener ('keydown', (controles) => {
                     } else {
                         irParaDireita();
                         carregarMapa();
+                        scrollar();
                     }
                 } else if (checarEspinho(68) || checarFlechas(68)) {
                     morteEGameOver ();
@@ -1929,5 +1947,6 @@ document.addEventListener ('keydown', (controles) => {
                 }
     };
 });
+
 document.addEventListener("DOMContentLoaded", mapa);
 document.addEventListener("DOMContentLoaded", carregarMapa);

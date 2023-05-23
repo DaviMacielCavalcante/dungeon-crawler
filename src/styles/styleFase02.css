@@ -5,7 +5,8 @@ body {
     align-items: space-between;
     justify-content: space-evenly;
     height: 100vh;
-    
+    background-color: black;
+    color: white;
 }
  td {
     min-width: 40px;
