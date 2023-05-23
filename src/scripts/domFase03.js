@@ -1,10 +1,42 @@
 let fase03 = [], fase03Inicio1morte = [], fase03Inicio2Morte = [], vidas = 3;
 let redDoor1, redDoor2, lightBlueDoor, greenDoor;
-const player = '&', wall = '*' , spikes = '#', key = '@', lockedDoor = 'D', unlockedDoor = '=', button = 'O', tp = '>', paredeAtravessavelEsq = '}', paredeAtravessavelDir = '{';
+const player = '&', wall = '*' , spikes = '#', key = '@', lockedDoor = 'D', unlockedDoor = '=', button = 'O', tp = '(_)', paredeAtravessavelEsq = '}', paredeAtravessavelDir = '{', flechaBaixo = 'v', flechaDireita = '>', flechaEsquerda = '<', flechaCima = "^";
 const redKey = key, lightBlueKey = key, greenKey = key;
 const tpLaranjaA = tp, tpLaranjaB = tp, tpVerdeA = tp, tpVerdeB = tp, tpRoxoA = tp, tpRoxoB = tp, tpAmareloA = tp, tpAmareloB = tp, tpAzulClaroA = tp, tpAzulClaroB = tp;
 const darkBlueButton = button, purpleButton = button, pinkButton = button, redButton = button;
 let coordPlayer = {x: 2, y: 22};
+let coordsFlechas = {
+    flechaGA1: {x: 9, y: 9},
+    flechaGA2: {x: 23, y: 9},
+    flechaGA3: {x: 9, y: 11},
+    flechaGA4: {x: 23, y: 11},
+    flechaGA5: {x: 15, y: 10},
+    flechaGB1: {x: 8, y: 13},
+    flechaGB2: {x: 16, y: 13},
+    flechaGB3: {x: 24, y: 13},
+    flechaGB4: {x: 32, y: 13},
+    flechaGC1: {x: 50, y: 23},
+    flechaGC2: {x: 50, y: 24},
+    flechaGD: {x: 46, y: 29},
+    flechaGE: {x: 53, y: 37},
+    flechaGF1: {x: 52, y: 46},
+    flechaGF2: {x: 54, y: 46},
+    flechaGG1: {x: 21, y: 36},
+    flechaGG2: {x: 21, y: 37},
+    flechaGG3: {x: 21, y: 38},
+    flechaGG4: {x: 21, y: 52},
+    flechaGG5: {x: 21, y: 53},
+    flechaGG6: {x: 21, y: 54},
+    flechaGH1: {x: 25, y: 39},
+    flechaGH2: {x: 25, y: 40},
+    flechaGH3: {x: 25, y: 41},
+    flechaGH4: {x: 25, y: 49},
+    flechaGH5: {x: 25, y: 50},
+    flechaGH6: {x: 25, y: 51},
+    flechaGI1: {x: 12, y: 15},
+    flechaGI2: {x: 20, y: 15},
+    flechaGI3: {x: 28, y: 15}
+};
 const coordsFinais = {
     f1: {x: 59, y: 11},
     f2: {x: 59, y: 12},
@@ -33,7 +65,6 @@ const fixedCoords = {
     greenDoor: {x: 51, y: 16},
     lightBlueDoor: {x: 41, y: 35},
 };
-
 const onload = window.addEventListener('load', (onload) => {
     document.body.style.zoom = "75%";
 });
@@ -43,8 +74,7 @@ function mapa() {
         fase03[i] = new Array(60);
         fase03Inicio1morte[i] = new Array(60);
         fase03Inicio2Morte[i] = new Array(60);
-    };
-        
+    };   
     for (let i = 0; i < 60; i++) {
         for(let j = 0; j < 60; j++) {
             switch (i) {
@@ -124,14 +154,14 @@ function mapa() {
                     }
                     break;
                 case 9:
-                    if (j === 0 || j === 4 || j === 8 || j === 20 || j === 36 || j === 51 || j === 55 || j === 59) {
+                    if (j === 0 || j === 4 || j === 8 || j === 22 || j === 36 || j === 51 || j === 55 || j === 59) {
                         fase03[i][j] = wall;
                     } else {
                         fase03[i][j] = ' ';
                     }
                     break;
                 case 10:
-                    if (j === 0 || j === 4 || j === 14 || j === 26 || j === 36 || (j >= 40 && j <= 47) || j === 51 || j === 55 || j === 59) {
+                    if (j === 0 || j === 4 || j === 14 || j === 28 || j === 36 || (j >= 40 && j <= 47) || j === 51 || j === 55 || j === 59) {
                         fase03[i][j] = wall;
                     } else if (j === fixedCoords.purpleButton.x) {
                         fase03[i][j] = purpleButton;
@@ -140,7 +170,7 @@ function mapa() {
                     }
                     break;
                 case 11:
-                    if (j === 0 || j === 4 || j === 8 || j === 20 || j === 36 || j === 40 || j === 51 || j === 55) {
+                    if (j === 0 || j === 4 || j === 8 || j === 22 || j === 36 || j === 40 || j === 51 || j === 55) {
                         fase03[i][j] = wall;
                     } else {
                         fase03[i][j] = ' ';
@@ -210,7 +240,7 @@ function mapa() {
                     }
                     break;
                 case 18:
-                    if (j === 0 || j === 20 || j === 28 || j === 51 || j === 55 || j === 59) {
+                    if (j === 0 || j === 20 || j === 51 || j === 55 || j === 59) {
                         fase03[i][j] = wall;
                     } else if (j === 40 || j === 48) {
                         fase03[i][j] = spikes;
@@ -223,7 +253,7 @@ function mapa() {
                     }
                     break;
                 case 19:
-                    if (j === 0 || j === 20 || j === 24 || j === 51 || j === 55 || j === 59) {
+                    if (j === 0 || j === 20 || j === 51 || j === 55 || j === 59) {
                         fase03[i][j] = wall;
                     } else if ((j >= 5 && j <= 16) || j === 40 || j === 48) {
                         fase03[i][j] = spikes;
@@ -634,7 +664,6 @@ function mapa() {
             }
         } 
     };
-
     for (let i = 0; i < 60; i++) {
         for(let j = 0; j < 60; j++) {
             fase03Inicio1morte[i][j] = fase03[i][j];
@@ -739,12 +768,72 @@ function morteEGameOver () {
         fase03[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
         coordPlayer.y = 22;
+        coordsFlechas.flechaGA1 = {x: 9, y: 9};
+        coordsFlechas.flechaGA2 = {x: 23, y: 9};
+        coordsFlechas.flechaGA3 = {x: 9, y: 11};
+        coordsFlechas.flechaGA4 = {x: 23, y: 11};
+        coordsFlechas.flechaGA5 = {x: 15, y: 10};
+        coordsFlechas.flechaGB1 = {x: 8, y: 13};
+        coordsFlechas.flechaGB2 = {x: 16, y: 13};
+        coordsFlechas.flechaGB3 = {x: 24, y: 13};
+        coordsFlechas.flechaGB4 = {x: 32, y: 13};
+        coordsFlechas.flechaGC1 = {x: 50, y: 23};
+        coordsFlechas.flechaGC2 = {x: 50, y: 24};
+        coordsFlechas.flechaGD = {x: 46, y: 29};
+        coordsFlechas.flechaGE = {x: 53, y: 37};
+        coordsFlechas. flechaGF1 = {x: 52, y: 46};
+        coordsFlechas.flechaGF2 = {x: 54, y: 46};
+        coordsFlechas.flechaGG1 = {x: 21, y: 36};
+        coordsFlechas.flechaGG2 = {x: 21, y: 37};
+        coordsFlechas.flechaGG3 = {x: 21, y: 38};
+        coordsFlechas.flechaGG4 = {x: 21, y: 52};
+        coordsFlechas.flechaGG5 = {x: 21, y: 53};
+        coordsFlechas.flechaGG6 = {x: 21, y: 54};
+        coordsFlechas.flechaGH1 = {x: 25, y: 39};
+        coordsFlechas.flechaGH2 = {x: 25, y: 40};
+        coordsFlechas.flechaGH3 = {x: 25, y: 41};
+        coordsFlechas.flechaGH4 = {x: 25, y: 49};
+        coordsFlechas.flechaGH5 = {x: 25, y: 50};
+        coordsFlechas.flechaGH6 = {x: 25, y: 51};
+        coordsFlechas.flechaGI1 = {x: 12, y: 15};
+        coordsFlechas.flechaGI2 = {x: 20, y: 15};
+        coordsFlechas.flechaGI3 = {x: 28, y: 15};
         fase03 = fase03Inicio1morte;
         carregarMapa();
     } else if(vidas === 1) {
         fase03[coordPlayer.y][coordPlayer.x] = ' ';
         coordPlayer.x = 2;
         coordPlayer.y = 22;
+        coordsFlechas.flechaGA1 = {x: 9, y: 9};
+        coordsFlechas.flechaGA2 = {x: 23, y: 9};
+        coordsFlechas.flechaGA3 = {x: 9, y: 11};
+        coordsFlechas.flechaGA4 = {x: 23, y: 11};
+        coordsFlechas.flechaGA5 = {x: 15, y: 10};
+        coordsFlechas.flechaGB1 = {x: 8, y: 13};
+        coordsFlechas.flechaGB2 = {x: 16, y: 13};
+        coordsFlechas.flechaGB3 = {x: 24, y: 13};
+        coordsFlechas.flechaGB4 = {x: 32, y: 13};
+        coordsFlechas.flechaGC1 = {x: 50, y: 23};
+        coordsFlechas.flechaGC2 = {x: 50, y: 24};
+        coordsFlechas.flechaGD = {x: 46, y: 29};
+        coordsFlechas.flechaGE = {x: 53, y: 37};
+        coordsFlechas. flechaGF1 = {x: 52, y: 46};
+        coordsFlechas.flechaGF2 = {x: 54, y: 46};
+        coordsFlechas.flechaGG1 = {x: 21, y: 36};
+        coordsFlechas.flechaGG2 = {x: 21, y: 37};
+        coordsFlechas.flechaGG3 = {x: 21, y: 38};
+        coordsFlechas.flechaGG4 = {x: 21, y: 52};
+        coordsFlechas.flechaGG5 = {x: 21, y: 53};
+        coordsFlechas.flechaGG6 = {x: 21, y: 54};
+        coordsFlechas.flechaGH1 = {x: 25, y: 39};
+        coordsFlechas.flechaGH2 = {x: 25, y: 40};
+        coordsFlechas.flechaGH3 = {x: 25, y: 41};
+        coordsFlechas.flechaGH4 = {x: 25, y: 49};
+        coordsFlechas.flechaGH5 = {x: 25, y: 50};
+        coordsFlechas.flechaGH6 = {x: 25, y: 51};
+        coordsFlechas.flechaGI1 = {x: 12, y: 15};
+        coordsFlechas.flechaGI2 = {x: 20, y: 15};
+        coordsFlechas.flechaGI3 = {x: 28, y: 15};
         fase03 = fase03Inicio2Morte;
         carregarMapa();
     }
@@ -801,7 +890,6 @@ function checarTp(direcao) {
             return fase03[coordPlayer.y][coordPlayer.x + 1] === tp;
     }
 }
-
 // ################################# CHECAR CHAVES ########################################################
 
 function estaNaChaveVermelha() {
@@ -815,7 +903,6 @@ function estaNaChaveAzulClaro() {
 function estaNaChaveVerde() {
     return coordPlayer.x === fixedCoords.greenKey.x && coordPlayer.y === fixedCoords.greenKey.y;s
 };
-
 // ################################# CHECAR BOTÕES ########################################################
 
 function estaNoBotaoAzulEscuro() {
@@ -833,8 +920,7 @@ function estaNoBotaoRosa() {
 function estaNoBotaoVermeho() {
     return coordPlayer.x === fixedCoords.redButton.x && coordPlayer.y === fixedCoords.redButton.y;
 };
-
-// ################################# CHECAR SE ESTÁ EM CIMA DE TELEPORTES ########################################################
+// ################################# CHECAR SE ESTÁ EM CIMA DE TELEPORTES ######################################
 
 function estaNoTpAmareloA() {
     return coordPlayer.x === fixedCoords.tpAmareloA.x && coordPlayer.y === fixedCoords.tpAmareloA.y;
@@ -875,7 +961,6 @@ function estaNoTpRoxoA() {
 function estaNoTpRoxoB() {
     return coordPlayer.x === fixedCoords.tpRoxoB.x && coordPlayer.y === fixedCoords.tpRoxoB.y;
 };
-
 // ################################# MANTER CHAVE ########################################################
 
 function manterChaveIrParaCima() {
@@ -901,31 +986,103 @@ function manterChaveIrParaDireita() {
     fase03[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
 }
-
-// ################################# MOVIMENTAÇÃO E SE ESTÁ EM PORTA ########################################################
+// ################################# MOVIMENTAÇÃO E SE ESTÁ EM PORTA #####################
 
 function irParaCima() {
-    fase03[coordPlayer.y][coordPlayer.x] = ' ';
-    fase03[coordPlayer.y - 1][coordPlayer.x] = player;
-    coordPlayer.y--;
+    if (fase03[coordPlayer.y][coordPlayer.x] === ' ' || fase03[coordPlayer.y][coordPlayer.x] === player) {        
+        fase03[coordPlayer.y][coordPlayer.x] = ' ';
+        fase03[coordPlayer.y - 1][coordPlayer.x] = player;
+        coordPlayer.y--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaBaixo) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaBaixo;
+        fase03[coordPlayer.y - 1][coordPlayer.x] = player;
+        coordPlayer.y--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaCima) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaCima;
+        fase03[coordPlayer.y - 1][coordPlayer.x] = player;
+        coordPlayer.y--;
+    
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaEsquerda) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaEsquerda;
+        fase03[coordPlayer.y - 1][coordPlayer.x] = player;
+        coordPlayer.y--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaDireita) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaDireita;
+        fase03[coordPlayer.y - 1][coordPlayer.x] = player;
+        coordPlayer.y--;
+    }
 };
 
 function irParaBaixo() {
-    fase03[coordPlayer.y][coordPlayer.x] = ' ';
-    fase03[coordPlayer.y + 1][coordPlayer.x] = player;
-    coordPlayer.y++;
+    if (fase03[coordPlayer.y][coordPlayer.x] === ' ' || fase03[coordPlayer.y][coordPlayer.x] === player) {    
+        fase03[coordPlayer.y][coordPlayer.x] = ' ';
+        fase03[coordPlayer.y + 1][coordPlayer.x] = player;
+        coordPlayer.y++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaBaixo) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaBaixo;
+        fase03[coordPlayer.y + 1][coordPlayer.x] = player;
+        coordPlayer.y++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaCima) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaCima;
+        fase03[coordPlayer.y + 1][coordPlayer.x] = player;
+        coordPlayer.y++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaEsquerda) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaEsquerda;
+        fase03[coordPlayer.y + 1][coordPlayer.x] = player;
+        coordPlayer.y++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaDireita) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaDireita;
+        fase03[coordPlayer.y + 1][coordPlayer.x] = player;
+        coordPlayer.y++;
+    }
 };
 
 function irParaEsquerda() {
-    fase03[coordPlayer.y][coordPlayer.x] = ' ';
-    fase03[coordPlayer.y][coordPlayer.x - 1] = player;
-    coordPlayer.x--;
+    if (fase03[coordPlayer.y][coordPlayer.x] === ' ' || fase03[coordPlayer.y][coordPlayer.x] === player) {
+        fase03[coordPlayer.y][coordPlayer.x] = ' ';
+        fase03[coordPlayer.y][coordPlayer.x - 1] = player;
+        coordPlayer.x--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaBaixo) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaBaixo;
+        fase03[coordPlayer.y][coordPlayer.x - 1] = player;
+        coordPlayer.x--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaCima) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaCima;
+        fase03[coordPlayer.y][coordPlayer.x - 1] = player;
+        coordPlayer.x--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaEsquerda) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaEsquerda;
+        fase03[coordPlayer.y][coordPlayer.x - 1] = player;
+        coordPlayer.x--;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaDireita) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaDireita;
+        fase03[coordPlayer.y][coordPlayer.x - 1] = player;
+        coordPlayer.x--;
+    }
 }
 
 function irParaDireita() {
-    fase03[coordPlayer.y][coordPlayer.x] = ' ';
-    fase03[coordPlayer.y][coordPlayer.x + 1] = player;
-    coordPlayer.x++;
+    if (fase03[coordPlayer.y][coordPlayer.x] === ' ' || fase03[coordPlayer.y][coordPlayer.x] === player) {
+        fase03[coordPlayer.y][coordPlayer.x] = ' ';
+        fase03[coordPlayer.y][coordPlayer.x + 1] = player;
+        coordPlayer.x++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaBaixo) {
+        fase03[coordPlayer.y][coordPlayer.x] === flechaBaixo;
+        fase03[coordPlayer.y][coordPlayer.x + 1] = player;
+        coordPlayer.x++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaCima) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaCima;
+        fase03[coordPlayer.y][coordPlayer.x + 1] = player;
+        coordPlayer.x++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaEsquerda) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaEsquerda;
+        fase03[coordPlayer.y][coordPlayer.x + 1] = player;
+        coordPlayer.x++;
+    } else if (fase03[coordPlayer.y][coordPlayer.x] === flechaDireita) {
+        fase03[coordPlayer.y][coordPlayer.x] = flechaDireita;
+        fase03[coordPlayer.y][coordPlayer.x + 1] = player;
+        coordPlayer.x++;
+    }
 }
 
 function estaNumaPorta() {
@@ -960,7 +1117,6 @@ function manterPortaIrParaDireita() {
     fase03[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
 }
-
 // ################################# MANTER BOTÃO ########################################################
 
 function manterBotaoIrParaCima() {
@@ -986,7 +1142,6 @@ function manterBotaoIrParaDireita() {
     fase03[coordPlayer.y][coordPlayer.x + 1] = player;
     coordPlayer.x++;
 }
-
 // ################################# SAIR DE TP/BOTÃO ########################################################
 
 function sairDoBotao() {
@@ -999,7 +1154,6 @@ function sairDoTp() {
         return true;
     }
 }
-
 // ################################# MANTER TP ########################################################
 
 function manterTpIrParaCima() {
@@ -1026,12 +1180,285 @@ function manterTpIrParaDireita() {
     coordPlayer.x++;
 }
 
+// ################################# FLECHAS #################################################################
+
+function checarFlechas(direcao) {
+    switch (direcao) {
+        case 87:
+            return fase03[coordPlayer.y - 1][coordPlayer.x] === flechaBaixo || fase03[coordPlayer.y - 1][coordPlayer.x] === flechaCima || fase03[coordPlayer.y - 1][coordPlayer.x] === flechaEsquerda || fase03[coordPlayer.y - 1][coordPlayer.x] === flechaDireita;
+        case 83:
+            return fase03[coordPlayer.y + 1][coordPlayer.x] === flechaBaixo || fase03[coordPlayer.y + 1][coordPlayer.x] === flechaCima || fase03[coordPlayer.y + 1][coordPlayer.x] === flechaEsquerda || fase03[coordPlayer.y + 1][coordPlayer.x] === flechaDireita;
+        case 65:
+            return fase03[coordPlayer.y][coordPlayer.x - 1] === flechaBaixo || fase03[coordPlayer.y][coordPlayer.x - 1] === flechaCima || fase03[coordPlayer.y][coordPlayer.x - 1] === flechaEsquerda || fase03[coordPlayer.y - 1][coordPlayer.x] === flechaDireita;
+        case 68:
+            return fase03[coordPlayer.y][coordPlayer.x + 1] === flechaBaixo || fase03[coordPlayer.y][coordPlayer.x + 1] === flechaCima || fase03[coordPlayer.y][coordPlayer.x + 1] === flechaEsquerda || fase03[coordPlayer.y + 1][coordPlayer.x] === flechaDireita;
+    }
+}
+
+function moverFlechasGA () {
+    if (fase03[coordsFlechas.flechaGA1.y][coordsFlechas.flechaGA1.x + 1] === ' ' || fase03[coordsFlechas.flechaGA1.y][coordsFlechas.flechaGA1.x + 1] === player) {
+        fase03[coordsFlechas.flechaGA1.y][coordsFlechas.flechaGA1.x] = ' ';
+        fase03[coordsFlechas.flechaGA1.y][coordsFlechas.flechaGA1.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGA2.y][coordsFlechas.flechaGA2.x] = ' ';
+        fase03[coordsFlechas.flechaGA2.y][coordsFlechas.flechaGA2.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGA3.y][coordsFlechas.flechaGA3.x] = ' ';
+        fase03[coordsFlechas.flechaGA3.y][coordsFlechas.flechaGA3.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGA4.y][coordsFlechas.flechaGA4.x] = ' ';
+        fase03[coordsFlechas.flechaGA4.y][coordsFlechas.flechaGA4.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGA5.y][coordsFlechas.flechaGA5.x] = ' ';
+        fase03[coordsFlechas.flechaGA5.y][coordsFlechas.flechaGA5.x + 1] = flechaDireita;
+        coordsFlechas.flechaGA1.x++;
+        coordsFlechas.flechaGA2.x++;
+        coordsFlechas.flechaGA3.x++;
+        coordsFlechas.flechaGA4.x++;
+        coordsFlechas.flechaGA5.x++;
+
+    } else {
+        fase03[coordsFlechas.flechaGA1.y][coordsFlechas.flechaGA1.x] = ' ';
+        fase03[coordsFlechas.flechaGA2.y][coordsFlechas.flechaGA2.x] = ' ';
+        fase03[coordsFlechas.flechaGA3.y][coordsFlechas.flechaGA3.x] = ' ';
+        fase03[coordsFlechas.flechaGA4.y][coordsFlechas.flechaGA4.x] = ' ';
+        fase03[coordsFlechas.flechaGA5.y][coordsFlechas.flechaGA5.x] = ' ';
+        coordsFlechas.flechaGA1 = {x: 9, y: 9};
+        coordsFlechas.flechaGA2 = {x: 23, y: 9};
+        coordsFlechas.flechaGA3 = {x: 9, y: 11};
+        coordsFlechas.flechaGA4 = {x: 23, y: 11};
+        coordsFlechas.flechaGA5 = {x: 15, y: 10};
+        fase03[coordsFlechas.flechaGA1.y][coordsFlechas.flechaGA1.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGA2.y][coordsFlechas.flechaGA2.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGA3.y][coordsFlechas.flechaGA3.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGA4.y][coordsFlechas.flechaGA4.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGA5.y][coordsFlechas.flechaGA5.x] = flechaDireita;
+    }
+}
+
+function moverFlechasGB () {
+    if (fase03[coordsFlechas.flechaGB1.y + 1][coordsFlechas.flechaGB1.x] === ' ' || fase03[coordsFlechas.flechaGB1.y + 1][coordsFlechas.flechaGB1.x] === player) {
+        fase03[coordsFlechas.flechaGB1.y][coordsFlechas.flechaGB1.x] = ' ';
+        fase03[coordsFlechas.flechaGB1.y + 1][coordsFlechas.flechaGB1.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGB2.y][coordsFlechas.flechaGB2.x] = ' ';
+        fase03[coordsFlechas.flechaGB2.y + 1][coordsFlechas.flechaGB2.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGB3.y][coordsFlechas.flechaGB3.x] = ' ';
+        fase03[coordsFlechas.flechaGB3.y + 1][coordsFlechas.flechaGB3.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGB4.y][coordsFlechas.flechaGB4.x] = ' ';
+        fase03[coordsFlechas.flechaGB4.y + 1][coordsFlechas.flechaGB4.x] = flechaBaixo;
+        coordsFlechas.flechaGB1.y++;
+        coordsFlechas.flechaGB2.y++;
+        coordsFlechas.flechaGB3.y++;
+        coordsFlechas.flechaGB4.y++;
+
+    } else {
+        fase03[coordsFlechas.flechaGB1.y][coordsFlechas.flechaGB1.x] = ' ';
+        fase03[coordsFlechas.flechaGB2.y][coordsFlechas.flechaGB2.x] = ' ';
+        fase03[coordsFlechas.flechaGB3.y][coordsFlechas.flechaGB3.x] = ' ';
+        fase03[coordsFlechas.flechaGB4.y][coordsFlechas.flechaGB4.x] = ' ';
+        coordsFlechas.flechaGB1 = {x: 8, y: 13};
+        coordsFlechas.flechaGB2 = {x: 16, y: 13};
+        coordsFlechas.flechaGB3 = {x: 24, y: 13};
+        coordsFlechas.flechaGB4 = {x: 32, y: 13};
+        fase03[coordsFlechas.flechaGB1.y][coordsFlechas.flechaGB1.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGB2.y][coordsFlechas.flechaGB2.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGB3.y][coordsFlechas.flechaGB3.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGB4.y][coordsFlechas.flechaGB4.x] = flechaBaixo;
+    }
+}
+
+function moverFlechasGC () {
+    if (fase03[coordsFlechas.flechaGC1.y][coordsFlechas.flechaGC1.x - 1] === ' ' || fase03[coordsFlechas.flechaGC1.y][coordsFlechas.flechaGC1.x - 1] === player) {
+        fase03[coordsFlechas.flechaGC1.y][coordsFlechas.flechaGC1.x] = ' ';
+        fase03[coordsFlechas.flechaGC1.y][coordsFlechas.flechaGC1.x - 1] = flechaEsquerda;
+        fase03[coordsFlechas.flechaGC2.y][coordsFlechas.flechaGC2.x] = ' ';
+        fase03[coordsFlechas.flechaGC2.y][coordsFlechas.flechaGC2.x - 1] = flechaEsquerda;
+        coordsFlechas.flechaGC1.x--;
+        coordsFlechas.flechaGC2.x--;
+
+    } else {
+        fase03[coordsFlechas.flechaGC1.y][coordsFlechas.flechaGC1.x] = ' ';
+        fase03[coordsFlechas.flechaGC2.y][coordsFlechas.flechaGC2.x] = ' ';
+        coordsFlechas.flechaGC1 = {x: 50, y: 23};
+        coordsFlechas.flechaGC2 = {x: 50, y: 24};
+        fase03[coordsFlechas.flechaGC1.y][coordsFlechas.flechaGC1.x] = flechaEsquerda;
+        fase03[coordsFlechas.flechaGC2.y][coordsFlechas.flechaGC2.x] = flechaEsquerda;
+
+    }
+}
+
+function moverFlechaGD () {
+    if (fase03[coordsFlechas.flechaGD.y][coordsFlechas.flechaGD.x - 1] === ' ' || fase03[coordsFlechas.flechaGD.y][coordsFlechas.flechaGD.x - 1] === player) {
+        fase03[coordsFlechas.flechaGD.y][coordsFlechas.flechaGD.x] = ' ';
+        fase03[coordsFlechas.flechaGD.y][coordsFlechas.flechaGD.x - 1] = flechaEsquerda;
+        coordsFlechas.flechaGD.x--;
+    } else {
+        fase03[coordsFlechas.flechaGD.y][coordsFlechas.flechaGD.x] = ' ';
+        coordsFlechas.flechaGD = {x: 46, y: 29};
+        fase03[coordsFlechas.flechaGD.y][coordsFlechas.flechaGD.x] = flechaEsquerda;
+
+    }
+}
+
+function moverFlechaGE () {
+    if (fase03[coordsFlechas.flechaGE.y + 1][coordsFlechas.flechaGE.x] === ' ' || fase03[coordsFlechas.flechaGE.y + 1][coordsFlechas.flechaGE.x] === player) {
+        fase03[coordsFlechas.flechaGE.y][coordsFlechas.flechaGE.x] = ' ';
+        fase03[coordsFlechas.flechaGE.y + 1][coordsFlechas.flechaGE.x] = flechaBaixo;
+        coordsFlechas.flechaGE.y++;
+    } else {
+        fase03[coordsFlechas.flechaGE.y][coordsFlechas.flechaGE.x] = ' ';
+        coordsFlechas.flechaGE = {x: 53, y: 37};
+        fase03[coordsFlechas.flechaGE.y][coordsFlechas.flechaGE.x] = flechaBaixo;
+
+    }
+}
+
+function moverFlechasGF () {
+    if (fase03[coordsFlechas.flechaGF1.y + 1][coordsFlechas.flechaGF1.x] === ' ' || fase03[coordsFlechas.flechaGF1.y + 1][coordsFlechas.flechaGF1.x] === player) {
+        fase03[coordsFlechas.flechaGF1.y][coordsFlechas.flechaGF1.x] = ' ';
+        fase03[coordsFlechas.flechaGF1.y + 1][coordsFlechas.flechaGF1.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGF2.y][coordsFlechas.flechaGF2.x] = ' ';
+        fase03[coordsFlechas.flechaGF2.y + 1][coordsFlechas.flechaGF2.x] = flechaBaixo;
+        coordsFlechas.flechaGF1.y++;
+        coordsFlechas.flechaGF2.y++;
+
+    } else {
+        fase03[coordsFlechas.flechaGF1.y][coordsFlechas.flechaGF1.x] = ' ';
+        fase03[coordsFlechas.flechaGF2.y][coordsFlechas.flechaGF2.x] = ' ';
+        coordsFlechas.flechaGF1 = {x: 52, y: 46};
+        coordsFlechas.flechaGF2 = {x: 54, y: 46};
+        fase03[coordsFlechas.flechaGF1.y][coordsFlechas.flechaGF1.x] = flechaBaixo;
+        fase03[coordsFlechas.flechaGF2.y][coordsFlechas.flechaGF2.x] = flechaBaixo;
+
+    }
+}
+
+function moverFlechasGG () {
+    if (fase03[coordsFlechas.flechaGG6.y][coordsFlechas.flechaGG6.x + 1] === ' ' || fase03[coordsFlechas.flechaGG6.y][coordsFlechas.flechaGG6.x + 1] === player) {
+        fase03[coordsFlechas.flechaGG1.y][coordsFlechas.flechaGG1.x] = ' ';
+        fase03[coordsFlechas.flechaGG1.y][coordsFlechas.flechaGG1.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGG2.y][coordsFlechas.flechaGG2.x] = ' ';
+        fase03[coordsFlechas.flechaGG2.y][coordsFlechas.flechaGG2.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGG3.y][coordsFlechas.flechaGG3.x] = ' ';
+        fase03[coordsFlechas.flechaGG3.y][coordsFlechas.flechaGG3.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGG4.y][coordsFlechas.flechaGG4.x] = ' ';
+        fase03[coordsFlechas.flechaGG4.y][coordsFlechas.flechaGG4.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGG5.y][coordsFlechas.flechaGG5.x] = ' ';
+        fase03[coordsFlechas.flechaGG5.y][coordsFlechas.flechaGG5.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGG6.y][coordsFlechas.flechaGG6.x] = ' ';
+        fase03[coordsFlechas.flechaGG6.y][coordsFlechas.flechaGG6.x + 1] = flechaDireita;
+        coordsFlechas.flechaGG1.x++;
+        coordsFlechas.flechaGG2.x++;
+        coordsFlechas.flechaGG3.x++;
+        coordsFlechas.flechaGG4.x++;
+        coordsFlechas.flechaGG5.x++;
+        coordsFlechas.flechaGG6.x++;
+
+    } else {
+        fase03[coordsFlechas.flechaGG1.y][coordsFlechas.flechaGG1.x] = ' ';
+        fase03[coordsFlechas.flechaGG2.y][coordsFlechas.flechaGG2.x] = ' ';
+        fase03[coordsFlechas.flechaGG3.y][coordsFlechas.flechaGG3.x] = ' ';
+        fase03[coordsFlechas.flechaGG4.y][coordsFlechas.flechaGG4.x] = ' ';
+        fase03[coordsFlechas.flechaGG5.y][coordsFlechas.flechaGG5.x] = ' ';
+        fase03[coordsFlechas.flechaGG6.y][coordsFlechas.flechaGG6.x] = ' ';
+        coordsFlechas.flechaGG1 = {x: 21, y: 36};
+        coordsFlechas.flechaGG2 = {x: 21, y: 37};
+        coordsFlechas.flechaGG3 = {x: 21, y: 38};
+        coordsFlechas.flechaGG4 = {x: 21, y: 52};
+        coordsFlechas.flechaGG5 = {x: 21, y: 53};
+        coordsFlechas.flechaGG6 = {x: 21, y: 54};
+        fase03[coordsFlechas.flechaGG1.y][coordsFlechas.flechaGG1.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGG2.y][coordsFlechas.flechaGG2.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGG3.y][coordsFlechas.flechaGG3.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGG4.y][coordsFlechas.flechaGG4.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGG5.y][coordsFlechas.flechaGG5.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGG6.y][coordsFlechas.flechaGG6.x] = flechaDireita;
+    }
+}
+
+function moverFlechasGH () {
+    if (fase03[coordsFlechas.flechaGH1.y][coordsFlechas.flechaGH1.x + 1] === ' ' || fase03[coordsFlechas.flechaGH1.y][coordsFlechas.flechaGH1.x + 1] === player) {
+        fase03[coordsFlechas.flechaGH1.y][coordsFlechas.flechaGH1.x] = ' ';
+        fase03[coordsFlechas.flechaGH1.y][coordsFlechas.flechaGH1.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGH2.y][coordsFlechas.flechaGH2.x] = ' ';
+        fase03[coordsFlechas.flechaGH2.y][coordsFlechas.flechaGH2.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGH3.y][coordsFlechas.flechaGH3.x] = ' ';
+        fase03[coordsFlechas.flechaGH3.y][coordsFlechas.flechaGH3.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGH4.y][coordsFlechas.flechaGH4.x] = ' ';
+        fase03[coordsFlechas.flechaGH4.y][coordsFlechas.flechaGH4.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGH5.y][coordsFlechas.flechaGH5.x] = ' ';
+        fase03[coordsFlechas.flechaGH5.y][coordsFlechas.flechaGH5.x + 1] = flechaDireita;
+        fase03[coordsFlechas.flechaGH6.y][coordsFlechas.flechaGH6.x] = ' ';
+        fase03[coordsFlechas.flechaGH6.y][coordsFlechas.flechaGH6.x + 1] = flechaDireita;
+        coordsFlechas.flechaGH1.x++;
+        coordsFlechas.flechaGH2.x++;
+        coordsFlechas.flechaGH3.x++;
+        coordsFlechas.flechaGH4.x++;
+        coordsFlechas.flechaGH5.x++;
+        coordsFlechas.flechaGH6.x++;
+
+    } else {
+        fase03[coordsFlechas.flechaGH1.y][coordsFlechas.flechaGH1.x] = ' ';
+        fase03[coordsFlechas.flechaGH2.y][coordsFlechas.flechaGH2.x] = ' ';
+        fase03[coordsFlechas.flechaGH3.y][coordsFlechas.flechaGH3.x] = ' ';
+        fase03[coordsFlechas.flechaGH4.y][coordsFlechas.flechaGH4.x] = ' ';
+        fase03[coordsFlechas.flechaGH5.y][coordsFlechas.flechaGH5.x] = ' ';
+        fase03[coordsFlechas.flechaGH6.y][coordsFlechas.flechaGH6.x] = ' ';
+        coordsFlechas.flechaGH1 = {x: 25, y: 39};
+        coordsFlechas.flechaGH2 = {x: 25, y: 40};
+        coordsFlechas.flechaGH3 = {x: 25, y: 41};
+        coordsFlechas.flechaGH4 = {x: 25, y: 49};
+        coordsFlechas.flechaGH5 = {x: 25, y: 50};
+        coordsFlechas.flechaGH6 = {x: 25, y: 51};
+        fase03[coordsFlechas.flechaGH1.y][coordsFlechas.flechaGH1.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGH2.y][coordsFlechas.flechaGH2.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGH3.y][coordsFlechas.flechaGH3.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGH4.y][coordsFlechas.flechaGH4.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGH5.y][coordsFlechas.flechaGH5.x] = flechaDireita;
+        fase03[coordsFlechas.flechaGH6.y][coordsFlechas.flechaGH6.x] = flechaDireita;
+
+    }
+}
+
+function moverFlechasGI () {
+    if (fase03[coordsFlechas.flechaGI1.y - 1][coordsFlechas.flechaGI1.x] === ' ' || fase03[coordsFlechas.flechaGI1.y - 1][coordsFlechas.flechaGI1.x] === player) {
+        fase03[coordsFlechas.flechaGI1.y][coordsFlechas.flechaGI1.x] = ' ';
+        fase03[coordsFlechas.flechaGI1.y - 1][coordsFlechas.flechaGI1.x] = flechaCima;
+        fase03[coordsFlechas.flechaGI2.y][coordsFlechas.flechaGI2.x] = ' ';
+        fase03[coordsFlechas.flechaGI2.y - 1][coordsFlechas.flechaGI2.x] = flechaCima;
+        fase03[coordsFlechas.flechaGI3.y][coordsFlechas.flechaGI3.x] = ' ';
+        fase03[coordsFlechas.flechaGI3.y - 1][coordsFlechas.flechaGI3.x] = flechaCima;
+        coordsFlechas.flechaGI1.y--;
+        coordsFlechas.flechaGI2.y--;
+        coordsFlechas.flechaGI3.y--;
+
+    } else {
+        fase03[coordsFlechas.flechaGI1.y][coordsFlechas.flechaGI1.x] = ' ';
+        fase03[coordsFlechas.flechaGI2.y][coordsFlechas.flechaGI2.x] = ' ';
+        fase03[coordsFlechas.flechaGI3.y][coordsFlechas.flechaGI3.x] = ' ';
+        coordsFlechas.flechaGI1 = {x: 12, y: 15};
+        coordsFlechas.flechaGI2 = {x: 20, y: 15};
+        coordsFlechas.flechaGI3 = {x: 28, y: 15};
+        fase03[coordsFlechas.flechaGI1.y][coordsFlechas.flechaGI1.x] = flechaCima;
+        fase03[coordsFlechas.flechaGI2.y][coordsFlechas.flechaGI2.x] = flechaCima;
+        fase03[coordsFlechas.flechaGI3.y][coordsFlechas.flechaGI3.x] = flechaCima;
+
+    }
+}
+
 // ################################# MOVIMENTAÇÃO E INTERAÇÃO ########################################################
 
 document.addEventListener ('keydown', (controles) => {
     switch (controles.keyCode) {
             case 87: // W
                 if (checarEspacoVazio(87) || checarEspacoChave(87) || checarPorta(87) || checarBotao(87) || checarTp(87)) {
+
+                    moverFlechasGA();
+                    moverFlechasGB();
+                    moverFlechasGC();
+                    moverFlechaGD(); 
+                    moverFlechaGE();
+                    moverFlechasGF();
+                    moverFlechasGG();
+                    moverFlechasGH();
+                    moverFlechasGI();
+                    carregarMapa();
 
                     if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaCima();
@@ -1101,12 +1528,23 @@ document.addEventListener ('keydown', (controles) => {
                         irParaCima();
                         carregarMapa();
                     }
-                } else if (checarEspinho(87)) {
+                } else if (checarEspinho(87) || checarFlechas(87)) {
                     morteEGameOver ();
                 }
                 break;
             case 83: // S
                 if (checarEspacoVazio(83)|| checarEspacoChave(83) || checarPorta(83) || checarBotao(83) || checarTp(83)) {
+
+                    moverFlechasGA();
+                    moverFlechasGB();
+                    moverFlechasGC();
+                    moverFlechaGD();
+                    moverFlechaGE();
+                    moverFlechasGF();
+                    moverFlechasGG();
+                    moverFlechasGH();
+                    moverFlechasGI();
+                    carregarMapa();
 
                     if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaBaixo();
@@ -1176,12 +1614,23 @@ document.addEventListener ('keydown', (controles) => {
                         irParaBaixo();
                         carregarMapa();
                     }
-                } else if (checarEspinho(83)) {
+                } else if (checarEspinho(83) || checarFlechas(83)) {
                     morteEGameOver ();
                 }
                 break;
             case 65: // A
                 if (checarEspacoVazio(65) || checarEspacoChave(65) || checarPorta(65) || checarBotao(65) || checarTp(65) || checarParedeAtrvDir(65)) {
+
+                    moverFlechasGA();
+                    moverFlechasGB();
+                    moverFlechasGC();
+                    moverFlechaGD(); 
+                    moverFlechaGE();
+                    moverFlechasGF();
+                    moverFlechasGG();
+                    moverFlechasGH();
+                    moverFlechasGI();
+                    carregarMapa();
 
                     if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaEsquerda();
@@ -1252,12 +1701,23 @@ document.addEventListener ('keydown', (controles) => {
                         irParaEsquerda();
                         carregarMapa();
                     }
-                } else if (checarEspinho(65)) {
+                } else if (checarEspinho(65) || checarFlechas(65)) {
                     morteEGameOver ();
                 }
                 break;
             case 68: // D
                 if (checarEspacoVazio(68) || checarEspacoChave(68) || checarPorta(68) || checarBotao(68) || checarTp(68) || checarParedeAtrvEsq(68)) {
+
+                    moverFlechasGA();
+                    moverFlechasGB();
+                    moverFlechasGC();
+                    moverFlechaGD(); 
+                    moverFlechaGE();
+                    moverFlechasGF();
+                    moverFlechasGG();
+                    moverFlechasGH();
+                    moverFlechasGI();
+                    carregarMapa();
 
                     if (estaNaChaveVermelha() && redDoor1 === lockedDoor) {
                         manterChaveIrParaDireita();
@@ -1330,7 +1790,7 @@ document.addEventListener ('keydown', (controles) => {
                         irParaDireita();
                         carregarMapa();
                     }
-                } else if (checarEspinho(68)) {
+                } else if (checarEspinho(68) || checarFlechas(68)) {
                     morteEGameOver ();
                 }
                 break;
@@ -1469,6 +1929,5 @@ document.addEventListener ('keydown', (controles) => {
                 }
     };
 });
-
 document.addEventListener("DOMContentLoaded", mapa);
 document.addEventListener("DOMContentLoaded", carregarMapa);
