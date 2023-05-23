@@ -1303,7 +1303,7 @@ function moverFlechaGE () {
         coordsFlechas.flechaGE.y++;
     } else {
         fase03[coordsFlechas.flechaGE.y][coordsFlechas.flechaGE.x] = ' ';
-        coordsFlechas.flechaGE = {x: 53, y: 37};
+        coordsFlechas.flechaGE = {x: 53, y: 36};
         fase03[coordsFlechas.flechaGE.y][coordsFlechas.flechaGE.x] = flechaBaixo;
 
     }
