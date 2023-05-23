@@ -18,7 +18,7 @@ let coordsFlechas = {
     flechaGC1: {x: 50, y: 23},
     flechaGC2: {x: 50, y: 24},
     flechaGD: {x: 46, y: 29},
-    flechaGE: {x: 53, y: 37},
+    flechaGE: {x: 53, y: 36},
     flechaGF1: {x: 52, y: 46},
     flechaGF2: {x: 54, y: 46},
     flechaGG1: {x: 21, y: 36},
@@ -428,7 +428,7 @@ function mapa() {
                     }
                     break;
                 case 35:
-                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || (j >= 20 && j <= 40) || (j >= 42 && j <= 47) || j === 49 || j === 51 || j === 55 || j === 59) {
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || (j >= 20 && j <= 40) || (j >= 42 && j <= 47) || j === 49 || j === 51 || j === 53 || j === 55 || j === 59) {
                         fase03[i][j] = wall;
                     } else if (j === 6 || j === 58) {
                         fase03[i][j] = spikes;
@@ -440,7 +440,7 @@ function mapa() {
                     }
                     break;
                 case 36:
-                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || j === 20 || j === 43 || j === 47 || j === 49 || j === 51 || j === 53 || j === 55 || j === 59) {
+                    if (j === 0 || j === 4 || j === 8 || j === 12 || j === 16 || j === 20 || j === 43 || j === 47 || j === 49 || j === 51 || j === 55 || j === 59) {
                         fase03[i][j] = wall;
                     } else if (j === 6 || j === 58) {
                         fase03[i][j] = spikes;
@@ -780,7 +780,7 @@ function morteEGameOver () {
         coordsFlechas.flechaGC1 = {x: 50, y: 23};
         coordsFlechas.flechaGC2 = {x: 50, y: 24};
         coordsFlechas.flechaGD = {x: 46, y: 29};
-        coordsFlechas.flechaGE = {x: 53, y: 37};
+        coordsFlechas.flechaGE = {x: 53, y: 36};
         coordsFlechas. flechaGF1 = {x: 52, y: 46};
         coordsFlechas.flechaGF2 = {x: 54, y: 46};
         coordsFlechas.flechaGG1 = {x: 21, y: 36};
@@ -816,7 +816,7 @@ function morteEGameOver () {
         coordsFlechas.flechaGC1 = {x: 50, y: 23};
         coordsFlechas.flechaGC2 = {x: 50, y: 24};
         coordsFlechas.flechaGD = {x: 46, y: 29};
-        coordsFlechas.flechaGE = {x: 53, y: 37};
+        coordsFlechas.flechaGE = {x: 53, y: 36};
         coordsFlechas. flechaGF1 = {x: 52, y: 46};
         coordsFlechas.flechaGF2 = {x: 54, y: 46};
         coordsFlechas.flechaGG1 = {x: 21, y: 36};
